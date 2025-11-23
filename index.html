@@ -1,3 +1,4 @@
+html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +7,6 @@
     <title>YouthCare - Youth Mental Health Support</title>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Global Styles */
         :root {
             --primary: #FF7F50;
             --secondary: #FF9E7D;
@@ -49,7 +49,6 @@
             padding: 0 15px;
         }
 
-        /* Header Styles */
         header {
             background-color: white;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
@@ -154,7 +153,6 @@
             color: var(--primary);
         }
 
-        /* Hero Section */
         .hero {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
@@ -182,7 +180,6 @@
             margin-top: 30px;
         }
 
-        /* Features Section */
         .features {
             padding: 100px 0;
             background-color: white;
@@ -264,7 +261,6 @@
             line-height: 1.7;
         }
 
-        /* Community Section */
         .community {
             background-color: var(--light);
             padding: 100px 0;
@@ -303,7 +299,6 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
 
-        /* New Features Section */
         .new-features {
             padding: 100px 0;
             background-color: white;
@@ -345,7 +340,6 @@
             display: block;
         }
 
-        /* Digital Garden Styles */
         .garden-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -405,7 +399,6 @@
             transform: translateX(-50%);
         }
 
-        /* Story Weaving Styles */
         .story-container {
             max-height: 400px;
             overflow-y: auto;
@@ -423,7 +416,6 @@
             border-left: 4px solid var(--primary);
         }
 
-        /* Comfort Objects Styles */
         .comfort-objects {
             display: flex;
             flex-wrap: wrap;
@@ -454,7 +446,6 @@
             margin-bottom: 10px;
         }
 
-        /* Ritual Builder Styles */
         .ritual-steps {
             display: flex;
             flex-direction: column;
@@ -483,7 +474,6 @@
             font-weight: bold;
         }
 
-        /* Mood Weather Map Styles */
         .weather-map {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -520,7 +510,6 @@
             background: linear-gradient(135deg, #5C6BC0, #3949AB);
         }
 
-        /* Time Capsule Styles */
         .capsule-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -551,7 +540,6 @@
             border-radius: 0 8px 8px 0;
         }
 
-        /* Group Journaling Styles */
         .journal-container {
             display: grid;
             grid-template-columns: 2fr 1fr;
@@ -581,7 +569,6 @@
             border-radius: 8px;
         }
 
-        /* Hope Scanner Styles */
         .scanner-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -612,7 +599,6 @@
             border-left: 4px solid var(--garden-green);
         }
 
-        /* Form Elements */
         .form-group {
             margin-bottom: 20px;
         }
@@ -644,7 +630,6 @@
             outline: none;
         }
 
-        /* Call Section */
         .call-section {
             padding: 80px 0;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
@@ -667,7 +652,6 @@
             opacity: 0.9;
         }
 
-        /* Volunteers Section */
         .volunteers {
             padding: 80px 0;
             background-color: var(--light);
@@ -688,7 +672,6 @@
             color: #666;
         }
 
-        /* Footer */
         footer {
             background-color: var(--dark);
             color: white;
@@ -735,7 +718,6 @@
             font-size: 0.9rem;
         }
 
-        /* Modal Styles */
         .modal {
             display: none;
             position: fixed;
@@ -777,7 +759,6 @@
             font-size: 1.8rem;
         }
 
-        /* Responsive Styles */
         @media (max-width: 768px) {
             .navbar {
                 flex-direction: column;
@@ -850,10 +831,44 @@
             50% { transform: translateY(-10px); }
             100% { transform: translateY(0px); }
         }
+
+        .breathing-circle {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: #4CAF50;
+            margin: 20px auto;
+            animation: breathe 8s infinite ease-in-out;
+        }
+
+        @keyframes breathe {
+            0%, 100% { transform: scale(0.8); opacity: 0.7; }
+            25% { transform: scale(1.2); opacity: 1; }
+            50% { transform: scale(0.8); opacity: 0.7; }
+            75% { transform: scale(1.2); opacity: 1; }
+        }
+
+        .sound-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .sound-btn:hover {
+            background: var(--secondary);
+        }
+
+        .sound-btn.playing {
+            background: var(--success);
+        }
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header>
         <div class="container">
             <nav class="navbar">
@@ -876,7 +891,6 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
     <section class="hero">
         <div class="container">
             <h2>A Safe Space for Youth Mental Health Support</h2>
@@ -888,7 +902,6 @@
         </div>
     </section>
 
-    <!-- Features Section -->
     <section class="features" id="features">
         <div class="container">
             <div class="section-title">
@@ -920,7 +933,6 @@
         </div>
     </section>
 
-    <!-- New Features Section -->
     <section class="new-features" id="new-features">
         <div class="container">
             <div class="section-title">
@@ -948,24 +960,7 @@
                     <div class="garden-plot">
                         <h4>My Garden</h4>
                         <div id="garden-plants">
-                            <div class="plant">
-                                <div class="plant-stem"></div>
-                                <div class="plant-leaf left"></div>
-                                <div class="plant-leaf right"></div>
-                                <div class="plant-flower"></div>
-                                <small>Meditation</small>
-                            </div>
-                            <div class="plant">
-                                <div class="plant-stem"></div>
-                                <div class="plant-leaf left"></div>
-                                <div class="plant-leaf right"></div>
-                                <small>Exercise</small>
-                            </div>
-                            <div class="plant">
-                                <div class="plant-stem"></div>
-                                <div class="plant-leaf left"></div>
-                                <small>Journaling</small>
-                            </div>
+                            <!-- Plants will be added here dynamically -->
                         </div>
                     </div>
 
@@ -996,18 +991,7 @@
                 <p>Contribute your story anonymously and see how it connects with others to create beautiful collective narratives.</p>
 
                 <div class="story-container" id="story-container">
-                    <div class="story-fragment">
-                        <p>"Today I managed to get out of bed even though it felt impossible. Small wins matter."</p>
-                        <small>Posted 2 hours ago</small>
-                    </div>
-                    <div class="story-fragment">
-                        <p>"I reached out to a friend today after weeks of isolation. It was scary but worth it."</p>
-                        <small>Posted 5 hours ago</small>
-                    </div>
-                    <div class="story-fragment">
-                        <p>"Remember to breathe. The anxiety will pass. You've survived 100% of your bad days so far."</p>
-                        <small>Posted 1 day ago</small>
-                    </div>
+                    <!-- Stories will be added here dynamically -->
                 </div>
 
                 <div class="form-group">
@@ -1062,28 +1046,8 @@
                 <h3>Digital Ritual Builder</h3>
                 <p>Create personalized mental health rituals that you can practice regularly. Consistency builds resilience.</p>
 
-                <div class="ritual-steps">
-                    <div class="ritual-step">
-                        <div class="step-number">1</div>
-                        <div>
-                            <h4>Morning Intention</h4>
-                            <p>Set a positive intention for the day</p>
-                        </div>
-                    </div>
-                    <div class="ritual-step">
-                        <div class="step-number">2</div>
-                        <div>
-                            <h4>Midday Check-in</h4>
-                            <p>Pause and assess how you're feeling</p>
-                        </div>
-                    </div>
-                    <div class="ritual-step">
-                        <div class="step-number">3</div>
-                        <div>
-                            <h4>Evening Reflection</h4>
-                            <p>Journal about your day and practice gratitude</p>
-                        </div>
-                    </div>
+                <div class="ritual-steps" id="ritual-steps-container">
+                    <!-- Ritual steps will be added here dynamically -->
                 </div>
 
                 <div class="form-group">
@@ -1091,10 +1055,16 @@
                     <input type="text" id="ritual-name" class="form-control" placeholder="e.g., My Daily Grounding Practice">
                 </div>
                 <div class="form-group">
-                    <label for="ritual-steps">Describe Your Ritual Steps</label>
-                    <textarea id="ritual-steps" class="form-control" placeholder="Describe each step of your ritual..."></textarea>
+                    <label for="new-ritual-step">Add a Step to Your Ritual</label>
+                    <input type="text" id="new-ritual-step" class="form-control" placeholder="Describe a step...">
+                    <button class="btn btn-secondary" id="add-ritual-step" style="margin-top: 10px;">Add Step</button>
                 </div>
                 <button class="btn btn-primary" id="save-ritual">Save My Ritual</button>
+                
+                <div id="saved-rituals" style="margin-top: 20px;">
+                    <h4>Your Saved Rituals</h4>
+                    <div id="rituals-list"></div>
+                </div>
             </div>
 
             <!-- Mood Weather Map -->
@@ -1120,11 +1090,11 @@
                 <div id="weather-stats" style="background-color: white; padding: 20px; border-radius: 10px; margin-top: 20px;">
                     <h4>Community Mood Today</h4>
                     <p>Based on anonymous reports from our users:</p>
-                    <ul>
-                        <li>Sunny/Happy: 42%</li>
-                        <li>Cloudy/Sad: 28%</li>
-                        <li>Rainy/Anxious: 20%</li>
-                        <li>Stormy/Overwhelmed: 10%</li>
+                    <ul id="mood-stats-list">
+                        <li>Sunny/Happy: <span id="happy-count">0</span>%</li>
+                        <li>Cloudy/Sad: <span id="sad-count">0</span>%</li>
+                        <li>Rainy/Anxious: <span id="anxious-count">0</span>%</li>
+                        <li>Stormy/Overwhelmed: <span id="overwhelmed-count">0</span>%</li>
                     </ul>
                 </div>
 
@@ -1153,13 +1123,8 @@
 
                     <div class="capsule-list">
                         <h4>Your Time Capsules</h4>
-                        <div class="capsule-item">
-                            <p>"Remember that you're stronger than you think. This difficult time will pass."</p>
-                            <small>Delivers: March 15, 2025</small>
-                        </div>
-                        <div class="capsule-item">
-                            <p>"Check if you've been practicing daily meditation. It helps more than you realize."</p>
-                            <small>Delivers: June 1, 2025</small>
+                        <div id="capsules-list">
+                            <!-- Capsules will be added here dynamically -->
                         </div>
                     </div>
                 </div>
@@ -1172,7 +1137,7 @@
                 <div class="journal-container">
                     <div class="journal-prompt">
                         <h4>Today's Prompt</h4>
-                        <p>"What's one small thing that brought you comfort or joy recently?"</p>
+                        <p id="daily-prompt">"What's one small thing that brought you comfort or joy recently?"</p>
                         <div class="form-group" style="margin-top: 20px;">
                             <label for="journal-entry">Your Response</label>
                             <textarea id="journal-entry" class="form-control" placeholder="Share your thoughts..."></textarea>
@@ -1181,14 +1146,8 @@
                     </div>
                     <div class="journal-entries">
                         <h4>Community Responses</h4>
-                        <div class="journal-entry">
-                            <p>"My cat curled up next to me while I was working. Her purring was so calming."</p>
-                        </div>
-                        <div class="journal-entry">
-                            <p>"I tried a new tea flavor and it was surprisingly delicious. Small pleasures matter."</p>
-                        </div>
-                        <div class="journal-entry">
-                            <p>"The sunset yesterday was breathtaking. I took a photo to remember it."</p>
+                        <div id="journal-entries-list">
+                            <!-- Journal entries will be added here dynamically -->
                         </div>
                     </div>
                 </div>
@@ -1214,15 +1173,8 @@
 
                     <div class="scanner-results">
                         <h4>Potential Pathways</h4>
-                        <div class="opportunity-item">
-                            <h5>Community Art Projects</h5>
-                            <p>Use your creativity to connect with others. Local community centers often look for volunteers to lead art activities.</p>
-                            <small>First step: Search for community centers in your area</small>
-                        </div>
-                        <div class="opportunity-item">
-                            <h5>Nature Photography</h5>
-                            <p>Combine your love of nature with creative expression. Share your photos online or create a local exhibition.</p>
-                            <small>First step: Take your phone/camera to a local park</small>
+                        <div id="opportunities-list">
+                            <!-- Opportunities will be added here dynamically -->
                         </div>
                     </div>
                 </div>
@@ -1230,7 +1182,6 @@
         </div>
     </section>
 
-    <!-- Community Section -->
     <section class="community" id="community">
         <div class="container">
             <div class="community-content">
@@ -1247,7 +1198,6 @@
         </div>
     </section>
 
-    <!-- Save Call Section -->
     <section class="call-section" id="call">
         <div class="container">
             <div class="call-box">
@@ -1259,7 +1209,6 @@
         </div>
     </section>
 
-    <!-- Volunteers Section -->
     <section class="volunteers" id="volunteers">
         <div class="container">
             <div class="volunteer-content">
@@ -1270,7 +1219,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -1332,221 +1280,731 @@
         </div>
     </div>
 
+    <!-- Signup Modal -->
+    <div class="modal" id="signupModal">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <h2>Sign Up for YouthCare</h2>
+            <form id="signupForm">
+                <div class="form-group">
+                    <label for="signupUsername">Username</label>
+                    <input type="text" id="signupUsername" class="form-control" placeholder="Choose a username">
+                </div>
+                <div class="form-group">
+                    <label for="signupEmail">Email</label>
+                    <input type="email" id="signupEmail" class="form-control" placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="signupPassword">Password</label>
+                    <input type="password" id="signupPassword" class="form-control" placeholder="Create a password">
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Sign Up</button>
+            </form>
+            <p style="text-align: center; margin-top: 15px;">Already have an account? <a href="#" id="switchToLogin">Login</a></p>
+        </div>
+    </div>
+
     <script>
-        // Tab functionality for new features
-        const featureTabs = document.querySelectorAll('.feature-tab');
-        const featureContents = document.querySelectorAll('.feature-content');
-
-        featureTabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                // Remove active class from all tabs and contents
-                featureTabs.forEach(t => t.classList.remove('active'));
-                featureContents.forEach(c => c.classList.remove('active'));
-                
-                // Add active class to clicked tab and corresponding content
-                tab.classList.add('active');
-                const tabId = tab.getAttribute('data-tab');
-                document.getElementById(tabId + '-content').classList.add('active');
-            });
-        });
-
-        // Digital Garden functionality
-        document.getElementById('plant-habit').addEventListener('click', () => {
-            const habitName = document.getElementById('habit-name').value;
-            if (habitName) {
-                alert('Planted "' + habitName + '" in your digital garden!');
-                document.getElementById('habit-name').value = "";
-            } else {
-                alert('Please enter a habit name');
-            }
-        });
-
-        // Story Weaving functionality
-        document.getElementById('submit-story').addEventListener('click', () => {
-            const storyInput = document.getElementById('story-input').value;
-            if (storyInput) {
-                const storyContainer = document.getElementById('story-container');
-                const newFragment = document.createElement('div');
-                newFragment.className = 'story-fragment';
-                newFragment.innerHTML = '<p>"' + storyInput + '"</p><small>Posted just now</small>';
-                storyContainer.prepend(newFragment);
-                document.getElementById('story-input').value = "";
-                alert('Thank you for sharing your story anonymously!');
-            } else {
-                alert('Please write something to share');
-            }
-        });
-
-        // Comfort Objects functionality
-        const comfortItems = document.querySelectorAll('.comfort-item');
-        const toolDisplay = document.getElementById('comfort-tool-display');
-        const toolTitle = document.getElementById('tool-title');
-        const toolContent = document.getElementById('tool-content');
-
-        const toolData = {
-            breathing: {
-                title: 'Breathing Guide',
-                content: '<p>Follow the animation: Breathe in for 4 seconds, hold for 4 seconds, breathe out for 6 seconds. Repeat 5 times.</p><div style="width:100px;height:100px;border-radius:50%;background-color:#4CAF50;margin:20px auto;animation:pulse 4s infinite;"></div>'
-            },
-            sounds: {
-                title: 'Calming Sounds',
-                content: '<p>Choose a sound to focus on:</p><button class="btn" style="margin:5px;">Rainfall</button><button class="btn" style="margin:5px;">Ocean Waves</button><button class="btn" style="margin:5px;">Forest Birds</button>'
-            },
-            visual: {
-                title: 'Visual Meditation',
-                content: '<p>Focus on the moving shape. Let your thoughts come and go without judgment.</p><div style="width:150px;height:150px;background:linear-gradient(45deg, #FF7F50, #FF9E7D);margin:20px auto;border-radius:10px;animation:float 6s ease-in-out infinite;"></div>'
-            },
-            grounding: {
-                title: 'Grounding Exercise',
-                content: '<p>Name 5 things you can see, 4 things you can touch, 3 things you can hear, 2 things you can smell, and 1 thing you can taste.</p>'
-            },
-            affirmations: {
-                title: 'Positive Affirmations',
-                content: '<p>Repeat these affirmations to yourself:</p><ul><li>I am enough</li><li>My feelings are valid</li><li>This moment will pass</li><li>I have survived difficult times before</li><li>I am worthy of care and compassion</li></ul>'
-            },
-            journal: {
-                title: 'Quick Journal',
-                content: '<p>Take a moment to write down your thoughts:</p><textarea style="width:100%;height:100px;padding:10px;border-radius:5px;border:1px solid #ddd;"></textarea><button class="btn btn-primary" style="margin-top:10px;">Save Entry</button>'
-            }
+        // Data storage
+        let userData = {
+            habits: [],
+            stories: [],
+            rituals: [],
+            capsules: [],
+            journalEntries: [],
+            moodData: { happy: 0, sad: 0, anxious: 0, overwhelmed: 0 },
+            comfortTools: {}
         };
 
-        comfortItems.forEach(item => {
-            item.addEventListener('click', () => {
-                const tool = item.getAttribute('data-tool');
-                toolTitle.textContent = toolData[tool].title;
-                toolContent.innerHTML = toolData[tool].content;
-                toolDisplay.style.display = 'block';
-            });
+        // Initialize the app
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeApp();
         });
 
-        // Ritual Builder functionality
-        document.getElementById('save-ritual').addEventListener('click', () => {
-            const ritualName = document.getElementById('ritual-name').value;
-            const ritualSteps = document.getElementById('ritual-steps').value;
+        function initializeApp() {
+            // Load sample data
+            loadSampleData();
+            
+            // Initialize all event listeners
+            setupEventListeners();
+            
+            // Initialize features
+            initializeFeatures();
+            
+            console.log('YouthCare app initialized successfully!');
+        }
 
-            if (ritualName && ritualSteps) {
-                alert('Saved ritual: "' + ritualName + '"');
-                document.getElementById('ritual-name').value = "";
-                document.getElementById('ritual-steps').value = "";
+        function loadSampleData() {
+            // Sample habits
+            userData.habits = [
+                { name: 'Meditation', category: 'mindfulness', date: new Date() },
+                { name: 'Exercise', category: 'fitness', date: new Date() },
+                { name: 'Journaling', category: 'selfcare', date: new Date() }
+            ];
+
+            // Sample stories
+            userData.stories = [
+                { text: "Today I managed to get out of bed even though it felt impossible. Small wins matter.", date: "2 hours ago" },
+                { text: "I reached out to a friend today after weeks of isolation. It was scary but worth it.", date: "5 hours ago" },
+                { text: "Remember to breathe. The anxiety will pass. You've survived 100% of your bad days so far.", date: "1 day ago" }
+            ];
+
+            // Sample journal entries
+            userData.journalEntries = [
+                { text: "My cat curled up next to me while I was working. Her purring was so calming." },
+                { text: "I tried a new tea flavor and it was surprisingly delicious. Small pleasures matter." },
+                { text: "The sunset yesterday was breathtaking. I took a photo to remember it." }
+            ];
+
+            // Sample capsules
+            userData.capsules = [
+                { message: "Remember that you're stronger than you think. This difficult time will pass.", date: "2025-03-15" },
+                { message: "Check if you've been practicing daily meditation. It helps more than you realize.", date: "2025-06-01" }
+            ];
+        }
+
+        function setupEventListeners() {
+            // Tab functionality
+            const featureTabs = document.querySelectorAll('.feature-tab');
+            featureTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    featureTabs.forEach(t => t.classList.remove('active'));
+                    document.querySelectorAll('.feature-content').forEach(c => c.classList.remove('active'));
+                    
+                    tab.classList.add('active');
+                    const tabId = tab.getAttribute('data-tab');
+                    document.getElementById(tabId + '-content').classList.add('active');
+                });
+            });
+
+            // Digital Garden
+            document.getElementById('plant-habit').addEventListener('click', plantHabit);
+
+            // Story Weaving
+            document.getElementById('submit-story').addEventListener('click', submitStory);
+
+            // Comfort Objects
+            const comfortItems = document.querySelectorAll('.comfort-item');
+            comfortItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const tool = item.getAttribute('data-tool');
+                    showComfortTool(tool);
+                });
+            });
+
+            // Ritual Builder
+            document.getElementById('add-ritual-step').addEventListener('click', addRitualStep);
+            document.getElementById('save-ritual').addEventListener('click', saveRitual);
+
+            // Mood Weather
+            const weatherCells = document.querySelectorAll('.weather-cell');
+            weatherCells.forEach(cell => {
+                cell.addEventListener('click', () => {
+                    const mood = cell.getAttribute('data-mood');
+                    submitMood(mood);
+                });
+            });
+
+            // Time Capsule
+            document.getElementById('create-capsule').addEventListener('click', createCapsule);
+
+            // Group Journaling
+            document.getElementById('submit-journal').addEventListener('click', submitJournal);
+
+            // Hope Scanner
+            document.getElementById('scan-opportunities').addEventListener('click', scanOpportunities);
+
+            // Modal functionality
+            setupModals();
+
+            // Navigation
+            setupNavigation();
+        }
+
+        function initializeFeatures() {
+            renderHabits();
+            renderStories();
+            renderJournalEntries();
+            renderCapsules();
+            updateMoodStats();
+            initializeRitualBuilder();
+        }
+
+        // Digital Garden Functions
+        function plantHabit() {
+            const habitName = document.getElementById('habit-name').value;
+            const habitCategory = document.getElementById('habit-category').value;
+            
+            if (habitName) {
+                const newHabit = {
+                    name: habitName,
+                    category: habitCategory,
+                    date: new Date()
+                };
+                
+                userData.habits.push(newHabit);
+                renderHabits();
+                
+                document.getElementById('habit-name').value = '';
+                showNotification('Habit planted successfully!', 'success');
             } else {
-                alert('Please provide a name and steps for your ritual');
+                showNotification('Please enter a habit name', 'error');
             }
-        });
+        }
 
-        // Mood Weather Map functionality
-        const weatherCells = document.querySelectorAll('.weather-cell');
-        weatherCells.forEach(cell => {
-            cell.addEventListener('click', () => {
-                const mood = cell.getAttribute('data-mood');
-                alert('Thank you for sharing that you\'re feeling ' + mood + '. Your response has been recorded anonymously.');
+        function renderHabits() {
+            const gardenPlants = document.getElementById('garden-plants');
+            gardenPlants.innerHTML = '';
+            
+            userData.habits.forEach((habit, index) => {
+                const plant = document.createElement('div');
+                plant.className = 'plant';
+                plant.innerHTML = `
+                    <div class="plant-stem"></div>
+                    <div class="plant-leaf left"></div>
+                    <div class="plant-leaf right"></div>
+                    ${index % 3 === 0 ? '<div class="plant-flower"></div>' : ''}
+                    <small>${habit.name}</small>
+                `;
+                gardenPlants.appendChild(plant);
             });
-        });
+        }
 
-        // Time Capsule functionality
-        document.getElementById('create-capsule').addEventListener('click', () => {
+        // Story Weaving Functions
+        function submitStory() {
+            const storyInput = document.getElementById('story-input').value;
+            
+            if (storyInput) {
+                const newStory = {
+                    text: storyInput,
+                    date: 'just now'
+                };
+                
+                userData.stories.unshift(newStory);
+                renderStories();
+                
+                document.getElementById('story-input').value = '';
+                showNotification('Story shared anonymously!', 'success');
+            } else {
+                showNotification('Please write something to share', 'error');
+            }
+        }
+
+        function renderStories() {
+            const storyContainer = document.getElementById('story-container');
+            storyContainer.innerHTML = '';
+            
+            userData.stories.forEach(story => {
+                const fragment = document.createElement('div');
+                fragment.className = 'story-fragment';
+                fragment.innerHTML = `
+                    <p>"${story.text}"</p>
+                    <small>Posted ${story.date}</small>
+                `;
+                storyContainer.appendChild(fragment);
+            });
+        }
+
+        // Comfort Objects Functions
+        function showComfortTool(tool) {
+            const toolDisplay = document.getElementById('comfort-tool-display');
+            const toolTitle = document.getElementById('tool-title');
+            const toolContent = document.getElementById('tool-content');
+            
+            const toolData = {
+                breathing: {
+                    title: 'Breathing Guide',
+                    content: `
+                        <p>Follow the breathing animation. Breathe in as the circle expands, breathe out as it contracts.</p>
+                        <div class="breathing-circle"></div>
+                        <p>Inhale for 4 seconds → Hold for 4 seconds → Exhale for 6 seconds</p>
+                        <p>Repeat 5-10 times to calm your nervous system.</p>
+                    `
+                },
+                sounds: {
+                    title: 'Calming Sounds',
+                    content: `
+                        <p>Choose a calming sound to focus on:</p>
+                        <button class="sound-btn" data-sound="rain">Rainfall</button>
+                        <button class="sound-btn" data-sound="waves">Ocean Waves</button>
+                        <button class="sound-btn" data-sound="forest">Forest Birds</button>
+                        <div style="margin-top: 15px;">
+                            <p><small>Note: These are visual representations. In a full implementation, actual sounds would play.</small></p>
+                        </div>
+                    `
+                },
+                visual: {
+                    title: 'Visual Meditation',
+                    content: `
+                        <p>Focus on the moving shape. Let your thoughts come and go without judgment.</p>
+                        <div style="width:150px;height:150px;background:linear-gradient(45deg, #FF7F50, #FF9E7D);margin:20px auto;border-radius:10px;animation:float 6s ease-in-out infinite;"></div>
+                        <p>Breathe deeply and watch the gentle movement.</p>
+                    `
+                },
+                grounding: {
+                    title: 'Grounding Exercise',
+                    content: `
+                        <p><strong>5-4-3-2-1 Grounding Technique</strong></p>
+                        <p>Name aloud or in your mind:</p>
+                        <ul>
+                            <li>5 things you can see around you</li>
+                            <li>4 things you can touch</li>
+                            <li>3 things you can hear</li>
+                            <li>2 things you can smell</li>
+                            <li>1 thing you can taste</li>
+                        </ul>
+                        <p>This exercise helps bring you back to the present moment.</p>
+                    `
+                },
+                affirmations: {
+                    title: 'Positive Affirmations',
+                    content: `
+                        <p>Repeat these affirmations to yourself. Say them aloud or in your mind:</p>
+                        <ul>
+                            <li>I am enough</li>
+                            <li>My feelings are valid</li>
+                            <li>This moment will pass</li>
+                            <li>I have survived difficult times before</li>
+                            <li>I am worthy of care and compassion</li>
+                            <li>I am stronger than I think</li>
+                            <li>I am doing the best I can</li>
+                        </ul>
+                        <p>Choose one that resonates with you and repeat it throughout the day.</p>
+                    `
+                },
+                journal: {
+                    title: 'Quick Journal',
+                    content: `
+                        <p>Take a moment to write down your thoughts:</p>
+                        <textarea id="quick-journal" style="width:100%;height:100px;padding:10px;border-radius:5px;border:1px solid #ddd;margin-bottom:10px;" placeholder="What's on your mind?"></textarea>
+                        <button class="btn btn-primary" onclick="saveQuickJournal()">Save Entry</button>
+                    `
+                }
+            };
+            
+            toolTitle.textContent = toolData[tool].title;
+            toolContent.innerHTML = toolData[tool].content;
+            toolDisplay.style.display = 'block';
+            
+            // Add sound button functionality
+            if (tool === 'sounds') {
+                const soundButtons = toolContent.querySelectorAll('.sound-btn');
+                soundButtons.forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        soundButtons.forEach(b => b.classList.remove('playing'));
+                        this.classList.add('playing');
+                        showNotification(`Now playing ${this.textContent}`, 'success');
+                    });
+                });
+            }
+        }
+
+        function saveQuickJournal() {
+            const journalText = document.getElementById('quick-journal').value;
+            if (journalText) {
+                showNotification('Journal entry saved!', 'success');
+                document.getElementById('quick-journal').value = '';
+            } else {
+                showNotification('Please write something first', 'error');
+            }
+        }
+
+        // Ritual Builder Functions
+        function initializeRitualBuilder() {
+            userData.rituals = [];
+        }
+
+        function addRitualStep() {
+            const stepText = document.getElementById('new-ritual-step').value;
+            if (stepText) {
+                const stepsContainer = document.getElementById('ritual-steps-container');
+                const stepCount = stepsContainer.children.length + 1;
+                
+                const stepElement = document.createElement('div');
+                stepElement.className = 'ritual-step';
+                stepElement.innerHTML = `
+                    <div class="step-number">${stepCount}</div>
+                    <div>
+                        <p>${stepText}</p>
+                    </div>
+                    <button class="btn btn-secondary" onclick="removeRitualStep(this)" style="margin-left: auto;">Remove</button>
+                `;
+                
+                stepsContainer.appendChild(stepElement);
+                document.getElementById('new-ritual-step').value = '';
+            } else {
+                showNotification('Please enter a step description', 'error');
+            }
+        }
+
+        function removeRitualStep(button) {
+            button.parentElement.remove();
+            // Update step numbers
+            const steps = document.querySelectorAll('#ritual-steps-container .ritual-step');
+            steps.forEach((step, index) => {
+                step.querySelector('.step-number').textContent = index + 1;
+            });
+        }
+
+        function saveRitual() {
+            const ritualName = document.getElementById('ritual-name').value;
+            const steps = document.querySelectorAll('#ritual-steps-container .ritual-step');
+            
+            if (ritualName && steps.length > 0) {
+                const ritualSteps = Array.from(steps).map(step => 
+                    step.querySelector('p').textContent
+                );
+                
+                const newRitual = {
+                    name: ritualName,
+                    steps: ritualSteps,
+                    date: new Date().toLocaleDateString()
+                };
+                
+                userData.rituals.push(newRitual);
+                renderRituals();
+                
+                // Reset form
+                document.getElementById('ritual-name').value = '';
+                document.getElementById('ritual-steps-container').innerHTML = '';
+                
+                showNotification('Ritual saved successfully!', 'success');
+            } else {
+                showNotification('Please provide a ritual name and at least one step', 'error');
+            }
+        }
+
+        function renderRituals() {
+            const ritualsList = document.getElementById('rituals-list');
+            ritualsList.innerHTML = '';
+            
+            userData.rituals.forEach(ritual => {
+                const ritualElement = document.createElement('div');
+                ritualElement.className = 'capsule-item';
+                ritualElement.innerHTML = `
+                    <h5>${ritual.name}</h5>
+                    <p><strong>Steps:</strong></p>
+                    <ol>
+                        ${ritual.steps.map(step => `<li>${step}</li>`).join('')}
+                    </ol>
+                    <small>Created: ${ritual.date}</small>
+                `;
+                ritualsList.appendChild(ritualElement);
+            });
+        }
+
+        // Mood Weather Functions
+        function submitMood(mood) {
+            userData.moodData[mood]++;
+            updateMoodStats();
+            showNotification(`Thank you for sharing your mood (${mood}). Your response is anonymous.`, 'success');
+        }
+
+        function updateMoodStats() {
+            const total = Object.values(userData.moodData).reduce((sum, count) => sum + count, 0);
+            
+            if (total > 0) {
+                document.getElementById('happy-count').textContent = Math.round((userData.moodData.happy / total) * 100);
+                document.getElementById('sad-count').textContent = Math.round((userData.moodData.sad / total) * 100);
+                document.getElementById('anxious-count').textContent = Math.round((userData.moodData.anxious / total) * 100);
+                document.getElementById('overwhelmed-count').textContent = Math.round((userData.moodData.overwhelmed / total) * 100);
+            }
+        }
+
+        // Time Capsule Functions
+        function createCapsule() {
             const message = document.getElementById('capsule-message').value;
             const date = document.getElementById('delivery-date').value;
 
             if (message && date) {
-                alert('Your time capsule has been created! You will receive this message on the selected date.');
-                document.getElementById('capsule-message').value = "";
-                document.getElementById('delivery-date').value = "";
+                const newCapsule = {
+                    message: message,
+                    date: date,
+                    created: new Date().toLocaleDateString()
+                };
+                
+                userData.capsules.push(newCapsule);
+                renderCapsules();
+                
+                document.getElementById('capsule-message').value = '';
+                document.getElementById('delivery-date').value = '';
+                
+                showNotification('Time capsule created! You will receive this message on the selected date.', 'success');
             } else {
-                alert('Please provide both a message and delivery date');
+                showNotification('Please provide both a message and delivery date', 'error');
             }
-        });
+        }
 
-        // Group Journaling functionality
-        document.getElementById('submit-journal').addEventListener('click', () => {
+        function renderCapsules() {
+            const capsulesList = document.getElementById('capsules-list');
+            capsulesList.innerHTML = '';
+            
+            userData.capsules.forEach(capsule => {
+                const capsuleElement = document.createElement('div');
+                capsuleElement.className = 'capsule-item';
+                capsuleElement.innerHTML = `
+                    <p>"${capsule.message}"</p>
+                    <small>Delivers: ${capsule.date} | Created: ${capsule.created}</small>
+                `;
+                capsulesList.appendChild(capsuleElement);
+            });
+        }
+
+        // Group Journaling Functions
+        function submitJournal() {
             const entry = document.getElementById('journal-entry').value;
+            
             if (entry) {
-                const journalEntries = document.querySelector('.journal-entries');
-                const newEntry = document.createElement('div');
-                newEntry.className = 'journal-entry';
-                newEntry.innerHTML = '<p>' + entry + '</p>';
-                journalEntries.prepend(newEntry);
-                document.getElementById('journal-entry').value = "";
-                alert('Thank you for sharing your response anonymously!');
+                const newEntry = {
+                    text: entry,
+                    timestamp: new Date().toLocaleTimeString()
+                };
+                
+                userData.journalEntries.unshift(newEntry);
+                renderJournalEntries();
+                
+                document.getElementById('journal-entry').value = '';
+                showNotification('Thank you for sharing your response anonymously!', 'success');
             } else {
-                alert('Please write a response to share');
+                showNotification('Please write a response to share', 'error');
             }
-        });
+        }
 
-        // Hope Scanner functionality
-        document.getElementById('scan-opportunities').addEventListener('click', () => {
+        function renderJournalEntries() {
+            const entriesList = document.getElementById('journal-entries-list');
+            entriesList.innerHTML = '';
+            
+            userData.journalEntries.forEach(entry => {
+                const entryElement = document.createElement('div');
+                entryElement.className = 'journal-entry';
+                entryElement.innerHTML = `<p>${entry.text}</p>`;
+                entriesList.appendChild(entryElement);
+            });
+        }
+
+        // Hope Scanner Functions
+        function scanOpportunities() {
             const interests = document.getElementById('user-interests').value;
             const strengths = document.getElementById('user-strengths').value;
 
             if (interests || strengths) {
-                alert('Scanning for opportunities based on your interests and strengths...');
-                // In a real implementation, this would fetch personalized opportunities
+                const opportunitiesList = document.getElementById('opportunities-list');
+                opportunitiesList.innerHTML = '';
+                
+                // Generate opportunities based on inputs
+                const opportunities = generateOpportunities(interests, strengths);
+                
+                opportunities.forEach(opp => {
+                    const oppElement = document.createElement('div');
+                    oppElement.className = 'opportunity-item';
+                    oppElement.innerHTML = `
+                        <h5>${opp.title}</h5>
+                        <p>${opp.description}</p>
+                        <small>${opp.steps}</small>
+                    `;
+                    opportunitiesList.appendChild(oppElement);
+                });
+                
+                showNotification('Found opportunities based on your interests and strengths!', 'success');
             } else {
-                alert('Please share some of your interests or strengths');
+                showNotification('Please share some of your interests or strengths', 'error');
             }
-        });
+        }
 
-        // Modal functionality
-        const loginBtn = document.getElementById('loginBtn');
-        const signupBtn = document.getElementById('signupBtn');
-        const saveCallBtn = document.getElementById('saveCallBtn');
-        const volunteerBtn = document.getElementById('volunteerBtn');
-        const exploreCommunityBtn = document.getElementById('exploreCommunityBtn');
-        const talkToAIBtn = document.getElementById('talkToAIBtn');
-        const joinCommunityBtn = document.getElementById('joinCommunityBtn');
-        const loginModal = document.getElementById('loginModal');
-        const closeButtons = document.querySelectorAll('.close-modal');
+        function generateOpportunities(interests, strengths) {
+            const opportunities = [];
+            
+            if (interests.toLowerCase().includes('art') || strengths.toLowerCase().includes('creativ')) {
+                opportunities.push({
+                    title: 'Community Art Projects',
+                    description: 'Use your creativity to connect with others. Local community centers often look for volunteers to lead art activities.',
+                    steps: 'First step: Search for community centers or art studios in your area'
+                });
+            }
+            
+            if (interests.toLowerCase().includes('nature') || interests.toLowerCase().includes('outdoor')) {
+                opportunities.push({
+                    title: 'Nature Photography',
+                    description: 'Combine your love of nature with creative expression. Share your photos online or create a local exhibition.',
+                    steps: 'First step: Take your phone/camera to a local park and start capturing'
+                });
+            }
+            
+            if (interests.toLowerCase().includes('tech') || strengths.toLowerCase().includes('problem')) {
+                opportunities.push({
+                    title: 'Coding for Social Good',
+                    description: 'Use your technical skills to create apps or websites that help your community.',
+                    steps: 'First step: Identify a local problem that technology could help solve'
+                });
+            }
+            
+            if (strengths.toLowerCase().includes('listen') || strengths.toLowerCase().includes('help')) {
+                opportunities.push({
+                    title: 'Peer Support Volunteer',
+                    description: 'Your listening skills could provide comfort to others going through difficult times.',
+                    steps: 'First step: Research local mental health organizations that need volunteers'
+                });
+            }
+            
+            // Default opportunities
+            if (opportunities.length === 0) {
+                opportunities.push(
+                    {
+                        title: 'Local Library Programs',
+                        description: 'Libraries often host free workshops and community events where you can learn new skills and meet people.',
+                        steps: 'First step: Visit your local library website or branch'
+                    },
+                    {
+                        title: 'Online Learning Community',
+                        description: 'Join free online courses and connect with others who share your interests in learning.',
+                        steps: 'First step: Explore platforms like Coursera or edX for free courses'
+                    }
+                );
+            }
+            
+            return opportunities;
+        }
 
-        // Open modals
-        loginBtn.addEventListener('click', () => {
-            loginModal.style.display = 'flex';
-        });
+        // Modal Functions
+        function setupModals() {
+            const loginBtn = document.getElementById('loginBtn');
+            const signupBtn = document.getElementById('signupBtn');
+            const loginModal = document.getElementById('loginModal');
+            const signupModal = document.getElementById('signupModal');
+            const closeButtons = document.querySelectorAll('.close-modal');
+            const switchToSignup = document.getElementById('switchToSignup');
+            const switchToLogin = document.getElementById('switchToLogin');
 
-        signupBtn.addEventListener('click', () => {
-            alert('Sign up functionality would be implemented here');
-        });
+            loginBtn.addEventListener('click', () => loginModal.style.display = 'flex');
+            signupBtn.addEventListener('click', () => signupModal.style.display = 'flex');
 
-        // Close modals
-        closeButtons.forEach(button => {
-            button.addEventListener('click', () => {
+            closeButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    loginModal.style.display = 'none';
+                    signupModal.style.display = 'none';
+                });
+            });
+
+            switchToSignup.addEventListener('click', (e) => {
+                e.preventDefault();
+                loginModal.style.display = 'none';
+                signupModal.style.display = 'flex';
+            });
+
+            switchToLogin.addEventListener('click', (e) => {
+                e.preventDefault();
+                signupModal.style.display = 'none';
+                loginModal.style.display = 'flex';
+            });
+
+            window.addEventListener('click', (e) => {
+                if (e.target === loginModal) loginModal.style.display = 'none';
+                if (e.target === signupModal) signupModal.style.display = 'none';
+            });
+
+            document.getElementById('loginForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                showNotification('Login functionality would be implemented here', 'info');
                 loginModal.style.display = 'none';
             });
-        });
 
-        // Close modal when clicking outside
-        window.addEventListener('click', (e) => {
-            if (e.target == loginModal) {
-                loginModal.style.display = 'none';
-            }
-        });
+            document.getElementById('signupForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                showNotification('Sign up functionality would be implemented here', 'info');
+                signupModal.style.display = 'none';
+            });
+        }
 
-        // Form submissions
-        document.getElementById('loginForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Login functionality would be implemented here');
-            loginModal.style.display = 'none';
-        });
+        // Navigation Functions
+        function setupNavigation() {
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
 
-        // Button functionality
-        talkToAIBtn.addEventListener('click', () => {
-            alert('Assistant functionality would open here');
-        });
+            // Main buttons functionality
+            document.getElementById('talkToAIBtn').addEventListener('click', () => {
+                showNotification('AI Assistant would open here with mental health support', 'info');
+            });
 
-        joinCommunityBtn.addEventListener('click', () => {
-            alert('Community forum would open here');
-        });
+            document.getElementById('joinCommunityBtn').addEventListener('click', () => {
+                showNotification('Community forum would open here', 'info');
+            });
 
-        exploreCommunityBtn.addEventListener('click', () => {
-            alert('Community forum would open here');
-        });
+            document.getElementById('exploreCommunityBtn').addEventListener('click', () => {
+                showNotification('Community features would be displayed here', 'info');
+            });
 
-        saveCallBtn.addEventListener('click', () => {
-            const queueNumber = Math.floor(Math.random() * 50) + 1;
-            alert('Your request has been confirmed. Your queue number is ' + queueNumber + '. Know that you are heard.');
-        });
+            document.getElementById('saveCallBtn').addEventListener('click', () => {
+                const queueNumber = Math.floor(Math.random() * 50) + 1;
+                showNotification(`Your request has been confirmed. Your queue number is ${queueNumber}. Know that you are heard.`, 'success');
+            });
 
-        volunteerBtn.addEventListener('click', () => {
-            window.open('https://docs.google.com/forms/d/e/1FAIpQLSdDiV0Qg9g_LOs5bH-mC2Ej2HHmh9Gvvl8nTg1pp1xGwuuOQQ/viewform?usp=header', '_blank');
-        });
+            document.getElementById('volunteerBtn').addEventListener('click', () => {
+                window.open('https://docs.google.com/forms/d/e/1FAIpQLSdDiV0Qg9g_LOs5bH-mC2Ej2HHmh9Gvvl8nTg1pp1xGwuuOQQ/viewform?usp=header', '_blank');
+            });
+        }
+
+        // Utility Functions
+        function showNotification(message, type = 'info') {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 15px 20px;
+                border-radius: 5px;
+                color: white;
+                font-weight: 600;
+                z-index: 10000;
+                max-width: 300px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                transform: translateX(400px);
+                transition: transform 0.3s ease;
+            `;
+            
+            // Set background color based on type
+            const colors = {
+                success: '#28a745',
+                error: '#dc3545',
+                info: '#17a2b8',
+                warning: '#ffc107'
+            };
+            
+            notification.style.backgroundColor = colors[type] || colors.info;
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            // Animate in
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 100);
+            
+            // Remove after 4 seconds
+            setTimeout(() => {
+                notification.style.transform = 'translateX(400px)';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 300);
+            }, 4000);
+        }
+
+        // Make functions globally available for HTML onclick attributes
+        window.removeRitualStep = removeRitualStep;
+        window.saveQuickJournal = saveQuickJournal;
     </script>
 </body>
 </html>
