@@ -964,6 +964,45 @@
             margin-bottom: 20px;
             display: inline-block;
         }
+
+        /* Стили для формы волонтера */
+        .volunteer-form {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-top: 20px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+            margin-bottom: 0;
+        }
+
+        .qualification-item {
+            background: var(--light);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .qualification-item button {
+            background: var(--danger);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -980,6 +1019,7 @@
                     <li><a href="#new-features" data-page="home">New Tools</a></li>
                     <li><a href="#community" data-page="home">Community</a></li>
                     <li><a href="#" data-page="forum">Forum</a></li>
+                    <li><a href="#" data-page="volunteer">Volunteer</a></li>
                 </ul>
                 <div class="auth-buttons">
                     <button class="btn btn-secondary" id="loginBtn">Login</button>
@@ -1383,6 +1423,104 @@
         </div>
     </div>
 
+    <!-- Страница волонтера -->
+    <div id="volunteer-page" class="page">
+        <div class="container">
+            <button class="btn btn-secondary back-button" data-page="home">← Back to Home</button>
+            <div class="page-header">
+                <h2>Become a YouthCare Volunteer</h2>
+                <p>Join our team of dedicated volunteers and help support youth mental health</p>
+            </div>
+            <div class="page-content">
+                <div class="volunteer-form">
+                    <h3>Volunteer Application</h3>
+                    <p>We're looking for volunteers with backgrounds in psychology, mental health, cognitive processes, or sociology. Please fill out the form below to apply.</p>
+                    
+                    <form id="volunteerForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="volunteer-name">Full Name</label>
+                                <input type="text" id="volunteer-name" class="form-control" placeholder="Enter your full name">
+                            </div>
+                            <div class="form-group">
+                                <label for="volunteer-email">Email</label>
+                                <input type="email" id="volunteer-email" class="form-control" placeholder="Enter your email">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="volunteer-age">Age</label>
+                                <input type="number" id="volunteer-age" class="form-control" placeholder="Enter your age" min="18">
+                            </div>
+                            <div class="form-group">
+                                <label for="volunteer-location">Location</label>
+                                <input type="text" id="volunteer-location" class="form-control" placeholder="City, Country">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="volunteer-background">Background/Education</label>
+                            <select id="volunteer-background" class="form-control">
+                                <option value="">Select your background</option>
+                                <option value="psychology">Psychology</option>
+                                <option value="mental-health">Mental Health</option>
+                                <option value="sociology">Sociology</option>
+                                <option value="cognitive-science">Cognitive Science</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="volunteer-experience">Relevant Experience</label>
+                            <textarea id="volunteer-experience" class="form-control" placeholder="Describe your relevant experience..." rows="4"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="volunteer-availability">Availability (hours per week)</label>
+                            <select id="volunteer-availability" class="form-control">
+                                <option value="">Select your availability</option>
+                                <option value="1-5">1-5 hours</option>
+                                <option value="5-10">5-10 hours</option>
+                                <option value="10-15">10-15 hours</option>
+                                <option value="15+">15+ hours</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="volunteer-motivation">Why do you want to volunteer with YouthCare?</label>
+                            <textarea id="volunteer-motivation" class="form-control" placeholder="Tell us about your motivation..." rows="4"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 20px;">Submit Application</button>
+                    </form>
+                </div>
+                
+                <div style="margin-top: 40px;">
+                    <h3>What to Expect as a Volunteer</h3>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <h4>Training</h4>
+                            <p>All volunteers receive comprehensive training in mental health support and our platform guidelines.</p>
+                        </div>
+                        <div class="feature-card">
+                            <h4>Support</h4>
+                            <p>You'll have access to our team of professionals for guidance and support throughout your volunteering.</p>
+                        </div>
+                        <div class="feature-card">
+                            <h4>Flexibility</h4>
+                            <p>Volunteer on your own schedule with flexible hours that work for you.</p>
+                        </div>
+                        <div class="feature-card">
+                            <h4>Impact</h4>
+                            <p>Make a real difference in the lives of young people struggling with mental health challenges.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -1398,6 +1536,7 @@
                         <li><a href="#new-features" data-page="home">New Tools</a></li>
                         <li><a href="#community" data-page="home">Community</a></li>
                         <li><a href="#" data-page="forum">Forum</a></li>
+                        <li><a href="#" data-page="volunteer">Volunteer</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
@@ -1607,6 +1746,9 @@
 
             // AI Chat
             document.getElementById('send-message').addEventListener('click', sendMessage);
+
+            // Volunteer form
+            document.getElementById('volunteerForm').addEventListener('submit', submitVolunteerForm);
         }
 
         function setupPageNavigation() {
@@ -1631,6 +1773,11 @@
 
             document.getElementById('exploreCommunityBtn').addEventListener('click', () => {
                 showPage('forum-page');
+            });
+
+            // Volunteer button functionality
+            document.getElementById('volunteerBtn').addEventListener('click', () => {
+                showPage('volunteer-page');
             });
         }
 
@@ -2137,6 +2284,29 @@
             return responses[Math.floor(Math.random() * responses.length)];
         }
 
+        // Volunteer Form Functions
+        function submitVolunteerForm(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('volunteer-name').value;
+            const email = document.getElementById('volunteer-email').value;
+            const age = document.getElementById('volunteer-age').value;
+            
+            if (!name || !email || !age) {
+                showNotification('Please fill in all required fields', 'error');
+                return;
+            }
+            
+            if (age < 18) {
+                showNotification('You must be at least 18 years old to volunteer', 'error');
+                return;
+            }
+            
+            // In a real application, you would send this data to a server
+            showNotification('Thank you for your application! We will review it and contact you soon.', 'success');
+            document.getElementById('volunteerForm').reset();
+        }
+
         // Modal Functions
         function setupModals() {
             const loginBtn = document.getElementById('loginBtn');
@@ -2216,10 +2386,6 @@
             document.getElementById('saveCallBtn').addEventListener('click', () => {
                 const queueNumber = Math.floor(Math.random() * 50) + 1;
                 showNotification(`Your request has been confirmed. Your queue number is ${queueNumber}. Know that you are heard.`, 'success');
-            });
-
-            document.getElementById('volunteerBtn').addEventListener('click', () => {
-                window.open('https://docs.google.com/forms/d/e/1FAIpQLSdDiV0Qg9g_LOs5bH-mC2Ej2HHmh9Gvvl8nTg1pp1xGwuuOQQ/viewform?usp=header', '_blank');
             });
         }
 
