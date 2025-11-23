@@ -1,4 +1,3 @@
-html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -151,6 +150,13 @@ html
         .btn-light {
             background-color: white;
             color: var(--primary);
+        }
+
+        /* Исправление: кнопка Join Community теперь непрозрачная */
+        .btn-community {
+            background-color: var(--accent);
+            color: white;
+            border: none;
         }
 
         .hero {
@@ -866,6 +872,47 @@ html
         .sound-btn.playing {
             background: var(--success);
         }
+
+        /* Добавляем стиль для минимального возраста */
+        .age-verification {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            border-left: 4px solid var(--warning);
+        }
+
+        .age-checkbox {
+            margin-right: 10px;
+        }
+
+        /* Стили для уведомлений */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: 5px;
+            color: white;
+            font-weight: 600;
+            z-index: 10000;
+            max-width: 300px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+        }
+
+        .notification.success {
+            background-color: var(--success);
+        }
+
+        .notification.error {
+            background-color: var(--danger);
+        }
+
+        .notification.info {
+            background-color: var(--time-blue);
+        }
     </style>
 </head>
 <body>
@@ -897,7 +944,8 @@ html
             <p>An anonymous platform powered by psychology experts to support the mental well-being of youth in 2025. Your privacy is our priority.</p>
             <div class="hero-buttons">
                 <button class="btn btn-light btn-large" id="talkToAIBtn">Talk to Our Assistant</button>
-                <button class="btn btn-secondary btn-large" id="joinCommunityBtn">Join Community</button>
+                <!-- Исправление: кнопка теперь непрозрачная -->
+                <button class="btn btn-community btn-large" id="joinCommunityBtn">Join Community</button>
             </div>
         </div>
     </section>
@@ -1285,6 +1333,15 @@ html
         <div class="modal-content">
             <button class="close-modal">&times;</button>
             <h2>Sign Up for YouthCare</h2>
+            <!-- Добавляем проверку возраста -->
+            <div class="age-verification">
+                <p><strong>Age Verification</strong></p>
+                <p>To use YouthCare, you must be at least 13 years old. By checking this box, you confirm that you meet this requirement.</p>
+                <label>
+                    <input type="checkbox" id="age-verification" class="age-checkbox">
+                    I am at least 13 years old
+                </label>
+            </div>
             <form id="signupForm">
                 <div class="form-group">
                     <label for="signupUsername">Username</label>
@@ -1298,7 +1355,7 @@ html
                     <label for="signupPassword">Password</label>
                     <input type="password" id="signupPassword" class="form-control" placeholder="Create a password">
                 </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%;">Sign Up</button>
+                <button type="submit" class="btn btn-primary" style="width: 100%;" id="signupSubmitBtn" disabled>Sign Up</button>
             </form>
             <p style="text-align: center; margin-top: 15px;">Already have an account? <a href="#" id="switchToLogin">Login</a></p>
         </div>
@@ -1419,6 +1476,11 @@ html
 
             // Navigation
             setupNavigation();
+
+            // Age verification
+            document.getElementById('age-verification').addEventListener('change', function() {
+                document.getElementById('signupSubmitBtn').disabled = !this.checked;
+            });
         }
 
         function initializeFeatures() {
@@ -1910,8 +1972,12 @@ html
 
             document.getElementById('signupForm').addEventListener('submit', (e) => {
                 e.preventDefault();
-                showNotification('Sign up functionality would be implemented here', 'info');
-                signupModal.style.display = 'none';
+                if (document.getElementById('age-verification').checked) {
+                    showNotification('Sign up functionality would be implemented here', 'info');
+                    signupModal.style.display = 'none';
+                } else {
+                    showNotification('Please confirm you are at least 13 years old', 'error');
+                }
             });
         }
 
@@ -1958,30 +2024,7 @@ html
         function showNotification(message, type = 'info') {
             // Create notification element
             const notification = document.createElement('div');
-            notification.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                padding: 15px 20px;
-                border-radius: 5px;
-                color: white;
-                font-weight: 600;
-                z-index: 10000;
-                max-width: 300px;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-                transform: translateX(400px);
-                transition: transform 0.3s ease;
-            `;
-            
-            // Set background color based on type
-            const colors = {
-                success: '#28a745',
-                error: '#dc3545',
-                info: '#17a2b8',
-                warning: '#ffc107'
-            };
-            
-            notification.style.backgroundColor = colors[type] || colors.info;
+            notification.className = `notification ${type}`;
             notification.textContent = message;
             
             document.body.appendChild(notification);
