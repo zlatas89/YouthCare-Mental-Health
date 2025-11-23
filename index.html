@@ -124,17 +124,21 @@
             border: none;
             font-family: 'Open Sans', sans-serif;
             font-size: 0.95rem;
+            display: inline-block;
+            text-align: center;
+            text-decoration: none;
         }
 
         .btn-primary {
             background-color: var(--primary);
             color: white;
+            border: 2px solid var(--primary);
         }
 
         .btn-secondary {
             background-color: transparent;
             color: var(--primary);
-            border: 1px solid var(--primary);
+            border: 2px solid var(--primary);
         }
 
         .btn:hover {
@@ -150,13 +154,14 @@
         .btn-light {
             background-color: white;
             color: var(--primary);
+            border: 2px solid white;
         }
 
         /* Исправление: кнопка Join Community теперь непрозрачная */
         .btn-community {
             background-color: var(--accent);
             color: white;
-            border: none;
+            border: 2px solid var(--accent);
         }
 
         .hero {
@@ -441,10 +446,12 @@
             cursor: pointer;
             transition: all 0.3s;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 2px solid transparent;
         }
 
         .comfort-item:hover {
             transform: scale(1.05);
+            border-color: var(--primary);
         }
 
         .comfort-icon {
@@ -466,6 +473,7 @@
             display: flex;
             align-items: center;
             gap: 15px;
+            border: 1px solid var(--light-gray);
         }
 
         .step-number {
@@ -498,6 +506,13 @@
             cursor: pointer;
             text-align: center;
             flex-direction: column;
+            transition: transform 0.2s;
+            border: 2px solid transparent;
+        }
+
+        .weather-cell:hover {
+            transform: scale(1.05);
+            border-color: white;
         }
 
         .weather-sunny {
@@ -527,6 +542,7 @@
             padding: 25px;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 1px solid var(--light-gray);
         }
 
         .capsule-list {
@@ -536,6 +552,7 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             max-height: 400px;
             overflow-y: auto;
+            border: 1px solid var(--light-gray);
         }
 
         .capsule-item {
@@ -557,6 +574,7 @@
             padding: 25px;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 1px solid var(--light-gray);
         }
 
         .journal-entries {
@@ -566,6 +584,7 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             max-height: 400px;
             overflow-y: auto;
+            border: 1px solid var(--light-gray);
         }
 
         .journal-entry {
@@ -586,6 +605,7 @@
             padding: 25px;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 1px solid var(--light-gray);
         }
 
         .scanner-results {
@@ -595,6 +615,7 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             max-height: 400px;
             overflow-y: auto;
+            border: 1px solid var(--light-gray);
         }
 
         .opportunity-item {
@@ -913,6 +934,36 @@
         .notification.info {
             background-color: var(--time-blue);
         }
+
+        /* Страницы для перенаправления */
+        .page {
+            display: none;
+            padding: 50px 20px;
+            min-height: 80vh;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .page-content {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .back-button {
+            margin-bottom: 20px;
+            display: inline-block;
+        }
     </style>
 </head>
 <body>
@@ -924,11 +975,11 @@
                     <h1>YouthCare</h1>
                 </div>
                 <ul class="nav-links">
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#new-features">New Tools</a></li>
-                    <li><a href="#community">Community</a></li>
-                    <li><a href="#call">Save Call</a></li>
-                    <li><a href="#volunteers">Volunteer</a></li>
+                    <li><a href="#" data-page="home">Home</a></li>
+                    <li><a href="#features" data-page="home">Features</a></li>
+                    <li><a href="#new-features" data-page="home">New Tools</a></li>
+                    <li><a href="#community" data-page="home">Community</a></li>
+                    <li><a href="#" data-page="forum">Forum</a></li>
                 </ul>
                 <div class="auth-buttons">
                     <button class="btn btn-secondary" id="loginBtn">Login</button>
@@ -938,334 +989,399 @@
         </div>
     </header>
 
-    <section class="hero">
+    <!-- Главная страница -->
+    <div id="home-page" class="page active">
+        <section class="hero">
+            <div class="container">
+                <h2>A Safe Space for Youth Mental Health Support</h2>
+                <p>An anonymous platform powered by psychology experts to support the mental well-being of youth in 2025. Your privacy is our priority.</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-light btn-large" id="talkToAIBtn">Talk to Our Assistant</button>
+                    <!-- Исправление: кнопка теперь непрозрачная -->
+                    <button class="btn btn-community btn-large" id="joinCommunityBtn">Join Community</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="features" id="features">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Our Key Features</h2>
+                    <p>Designed with your mental health and privacy in mind</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">A</div>
+                        <h3>Complete Anonymity</h3>
+                        <p>Your identity is protected. We don't store personal data and all interactions are encrypted to ensure your privacy.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">AI</div>
+                        <h3>Mental Health Assistant</h3>
+                        <p>Our specialized assistant understands psychology, cognitive processes, and sociology to provide personalized support.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">C</div>
+                        <h3>Support Community</h3>
+                        <p>Connect with others who understand. Share experiences and support each other in a moderated, safe environment.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">S</div>
+                        <h3>Save Call Function</h3>
+                        <p>Anonymous calls to licensed professionals for those who need immediate specialized mental health support.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="new-features" id="new-features">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Innovative Mental Health Tools</h2>
+                    <p>Explore our unique features designed to support your mental wellness journey</p>
+                </div>
+
+                <div class="features-tabs">
+                    <button class="feature-tab active" data-tab="garden">Digital Garden</button>
+                    <button class="feature-tab" data-tab="story">Story Weaving</button>
+                    <button class="feature-tab" data-tab="comfort">Comfort Objects</button>
+                    <button class="feature-tab" data-tab="ritual">Ritual Builder</button>
+                    <button class="feature-tab" data-tab="weather">Mood Weather</button>
+                    <button class="feature-tab" data-tab="capsule">Time Capsule</button>
+                    <button class="feature-tab" data-tab="journal">Group Journal</button>
+                    <button class="feature-tab" data-tab="scanner">Hope Scanner</button>
+                </div>
+
+                <!-- Digital Garden -->
+                <div class="feature-content active" id="garden-content">
+                    <h3>Your Digital Garden</h3>
+                    <p>Plant seeds of positive habits and watch them grow over time. Each plant represents a goal or positive practice in your life.</p>
+
+                    <div class="garden-container">
+                        <div class="garden-plot">
+                            <h4>My Garden</h4>
+                            <div id="garden-plants">
+                                <!-- Plants will be added here dynamically -->
+                            </div>
+                        </div>
+
+                        <div class="garden-plot">
+                            <h4>Plant a New Habit</h4>
+                            <div class="form-group">
+                                <label for="habit-name">Habit Name</label>
+                                <input type="text" id="habit-name" class="form-control" placeholder="e.g., Daily Gratitude">
+                            </div>
+                            <div class="form-group">
+                                <label for="habit-category">Category</label>
+                                <select id="habit-category" class="form-control">
+                                    <option value="mindfulness">Mindfulness</option>
+                                    <option value="fitness">Fitness</option>
+                                    <option value="social">Social</option>
+                                    <option value="learning">Learning</option>
+                                    <option value="selfcare">Self-Care</option>
+                                </select>
+                            </div>
+                            <button class="btn btn-primary" id="plant-habit">Plant This Habit</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Story Weaving -->
+                <div class="feature-content" id="story-content">
+                    <h3>Anonymous Story Weaving</h3>
+                    <p>Contribute your story anonymously and see how it connects with others to create beautiful collective narratives.</p>
+
+                    <div class="story-container" id="story-container">
+                        <!-- Stories will be added here dynamically -->
+                    </div>
+
+                    <div class="form-group">
+                        <label for="story-input">Share Your Story Fragment</label>
+                        <textarea id="story-input" class="form-control" placeholder="Share a thought, feeling, or experience..."></textarea>
+                    </div>
+                    <button class="btn btn-primary" id="submit-story">Share Anonymously</button>
+                </div>
+
+                <!-- Comfort Objects -->
+                <div class="feature-content" id="comfort-content">
+                    <h3>Virtual Comfort Objects</h3>
+                    <p>Choose a digital comfort item to help you through difficult moments. These tools are always available when you need them.</p>
+
+                    <div class="comfort-objects">
+                        <div class="comfort-item" data-tool="breathing">
+                            <div class="comfort-icon">🌬️</div>
+                            <span>Breathing Guide</span>
+                        </div>
+                        <div class="comfort-item" data-tool="sounds">
+                            <div class="comfort-icon">🎵</div>
+                            <span>Calming Sounds</span>
+                        </div>
+                        <div class="comfort-item" data-tool="visual">
+                            <div class="comfort-icon">🌈</div>
+                            <span>Visual Meditation</span>
+                        </div>
+                        <div class="comfort-item" data-tool="grounding">
+                            <div class="comfort-icon">🌍</div>
+                            <span>Grounding Exercise</span>
+                        </div>
+                        <div class="comfort-item" data-tool="affirmations">
+                            <div class="comfort-icon">💭</div>
+                            <span>Positive Affirmations</span>
+                        </div>
+                        <div class="comfort-item" data-tool="journal">
+                            <div class="comfort-icon">📓</div>
+                            <span>Quick Journal</span>
+                        </div>
+                    </div>
+
+                    <div id="comfort-tool-display" style="margin-top: 30px; padding: 20px; background-color: white; border-radius: 10px; display: none;">
+                        <h4 id="tool-title">Tool Title</h4>
+                        <div id="tool-content">
+                            <!-- Tool content will be displayed here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ritual Builder -->
+                <div class="feature-content" id="ritual-content">
+                    <h3>Digital Ritual Builder</h3>
+                    <p>Create personalized mental health rituals that you can practice regularly. Consistency builds resilience.</p>
+
+                    <div class="ritual-steps" id="ritual-steps-container">
+                        <!-- Ritual steps will be added here dynamically -->
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ritual-name">Ritual Name</label>
+                        <input type="text" id="ritual-name" class="form-control" placeholder="e.g., My Daily Grounding Practice">
+                    </div>
+                    <div class="form-group">
+                        <label for="new-ritual-step">Add a Step to Your Ritual</label>
+                        <input type="text" id="new-ritual-step" class="form-control" placeholder="Describe a step...">
+                        <button class="btn btn-secondary" id="add-ritual-step" style="margin-top: 10px;">Add Step</button>
+                    </div>
+                    <button class="btn btn-primary" id="save-ritual">Save My Ritual</button>
+                    
+                    <div id="saved-rituals" style="margin-top: 20px;">
+                        <h4>Your Saved Rituals</h4>
+                        <div id="rituals-list"></div>
+                    </div>
+                </div>
+
+                <!-- Mood Weather Map -->
+                <div class="feature-content" id="weather-content">
+                    <h3>Mood Weather Map</h3>
+                    <p>See the emotional climate of our community. Your anonymous contribution helps others feel less alone.</p>
+
+                    <div class="weather-map">
+                        <div class="weather-cell weather-sunny" data-mood="happy">
+                            Sunny<br>Happy
+                        </div>
+                        <div class="weather-cell weather-cloudy" data-mood="sad">
+                            Cloudy<br>Sad
+                        </div>
+                        <div class="weather-cell weather-rainy" data-mood="anxious">
+                            Rainy<br>Anxious
+                        </div>
+                        <div class="weather-cell weather-stormy" data-mood="overwhelmed">
+                            Stormy<br>Overwhelmed
+                        </div>
+                    </div>
+
+                    <div id="weather-stats" style="background-color: white; padding: 20px; border-radius: 10px; margin-top: 20px;">
+                        <h4>Community Mood Today</h4>
+                        <p>Based on anonymous reports from our users:</p>
+                        <ul id="mood-stats-list">
+                            <li>Sunny/Happy: <span id="happy-count">0</span>%</li>
+                            <li>Cloudy/Sad: <span id="sad-count">0</span>%</li>
+                            <li>Rainy/Anxious: <span id="anxious-count">0</span>%</li>
+                            <li>Stormy/Overwhelmed: <span id="overwhelmed-count">0</span>%</li>
+                        </ul>
+                    </div>
+
+                    <div style="margin-top: 20px;">
+                        <p><strong>How are you feeling today?</strong> Select a weather pattern above to anonymously share your mood.</p>
+                    </div>
+                </div>
+
+                <!-- Time Capsule -->
+                <div class="feature-content" id="capsule-content">
+                    <h3>Digital Time Capsule</h3>
+                    <p>Write messages to your future self. Set a delivery date and receive your past thoughts when you need them most.</p>
+                    
+                    <div class="capsule-container">
+                        <div class="capsule-form">
+                            <div class="form-group">
+                                <label for="capsule-message">Message to Your Future Self</label>
+                                <textarea id="capsule-message" class="form-control" placeholder="What would you like to tell your future self?"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="delivery-date">Deliver On</label>
+                                <input type="date" id="delivery-date" class="form-control">
+                            </div>
+                            <button class="btn btn-primary" id="create-capsule">Create Time Capsule</button>
+                        </div>
+
+                        <div class="capsule-list">
+                            <h4>Your Time Capsules</h4>
+                            <div id="capsules-list">
+                                <!-- Capsules will be added here dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Group Journaling -->
+                <div class="feature-content" id="journal-content">
+                    <h3>Anonymous Group Journaling</h3>
+                    <p>Respond to prompts and read anonymous entries from others. Find comfort in shared experiences.</p>
+                    <div class="journal-container">
+                        <div class="journal-prompt">
+                            <h4>Today's Prompt</h4>
+                            <p id="daily-prompt">"What's one small thing that brought you comfort or joy recently?"</p>
+                            <div class="form-group" style="margin-top: 20px;">
+                                <label for="journal-entry">Your Response</label>
+                                <textarea id="journal-entry" class="form-control" placeholder="Share your thoughts..."></textarea>
+                            </div>
+                            <button class="btn btn-primary" id="submit-journal">Share Anonymously</button>
+                        </div>
+                        <div class="journal-entries">
+                            <h4>Community Responses</h4>
+                            <div id="journal-entries-list">
+                                <!-- Journal entries will be added here dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hope Scanner -->
+                <div class="feature-content" id="scanner-content">
+                    <h3>Hope Horizon Scanner</h3>
+                    <p>Discover positive future possibilities based on your interests. Take small steps toward a brighter tomorrow.</p>
+
+                    <div class="scanner-container">
+                        <div class="scanner-input">
+                            <div class="form-group">
+                                <label for="user-interests">Your Interests</label>
+                                <input type="text" id="user-interests" class="form-control" placeholder="e.g., art, nature, technology, helping others">
+                            </div>
+                            <div class="form-group">
+                                <label for="user-strengths">Your Strengths</label>
+                                <input type="text" id="user-strengths" class="form-control" placeholder="e.g., creativity, listening, problem-solving">
+                            </div>
+                            <button class="btn btn-primary" id="scan-opportunities">Find Opportunities</button>
+                        </div>
+
+                        <div class="scanner-results">
+                            <h4>Potential Pathways</h4>
+                            <div id="opportunities-list">
+                                <!-- Opportunities will be added here dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="community" id="community">
+            <div class="container">
+                <div class="community-content">
+                    <div class="community-text">
+                        <h2>Join Our Supportive Community</h2>
+                        <p>Our Mental Health community allows you to connect with others who may be experiencing similar challenges. Share your thoughts, ask questions, or simply read about others' experiences in a safe, moderated space.</p>
+                        <p>All community interactions are anonymous, and our moderation team ensures a respectful and supportive environment for everyone.</p>
+                        <button class="btn btn-primary" style="margin-top: 20px;" id="exploreCommunityBtn">Explore Community</button>
+                    </div>
+                    <div class="community-image">
+                        Community Forum Preview
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="call-section" id="call">
+            <div class="container">
+                <div class="call-box">
+                    <h2>Need Immediate Support?</h2>
+                    <p>Our Save Call function connects you anonymously with licensed mental health professionals. No personal information required.</p>
+                    <button class="btn btn-light btn-large" id="saveCallBtn">Request Anonymous Call</button>
+                    <p style="margin-top: 15px; font-size: 0.9rem;">Available 24/7 for urgent mental health support</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="volunteers" id="volunteers">
+            <div class="container">
+                <div class="volunteer-content">
+                    <h2>Want to Help Others?</h2>
+                    <p>We're looking for volunteers with backgrounds in psychology, mental health, cognitive processes, or sociology to support our community. If you have relevant education or experience, we'd love to have you on our team.</p>
+                    <button class="btn btn-primary" id="volunteerBtn">Apply as Volunteer</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Страница форума -->
+    <div id="forum-page" class="page">
         <div class="container">
-            <h2>A Safe Space for Youth Mental Health Support</h2>
-            <p>An anonymous platform powered by psychology experts to support the mental well-being of youth in 2025. Your privacy is our priority.</p>
-            <div class="hero-buttons">
-                <button class="btn btn-light btn-large" id="talkToAIBtn">Talk to Our Assistant</button>
-                <!-- Исправление: кнопка теперь непрозрачная -->
-                <button class="btn btn-community btn-large" id="joinCommunityBtn">Join Community</button>
+            <button class="btn btn-secondary back-button" data-page="home">← Back to Home</button>
+            <div class="page-header">
+                <h2>Community Forum</h2>
+                <p>Connect with others, share experiences, and find support in our anonymous community</p>
+            </div>
+            <div class="page-content">
+                <h3>Forum Categories</h3>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3>General Discussion</h3>
+                        <p>Share your thoughts, ask questions, and connect with others in a safe space.</p>
+                        <button class="btn btn-primary" style="margin-top: 15px;">Enter Discussion</button>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Success Stories</h3>
+                        <p>Read and share stories of overcoming challenges and finding hope.</p>
+                        <button class="btn btn-primary" style="margin-top: 15px;">Read Stories</button>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Coping Strategies</h3>
+                        <p>Discover and share techniques that help during difficult times.</p>
+                        <button class="btn btn-primary" style="margin-top: 15px;">Explore Strategies</button>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Resources & Tips</h3>
+                        <p>Find helpful resources and tips for mental wellness.</p>
+                        <button class="btn btn-primary" style="margin-top: 15px;">View Resources</button>
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <section class="features" id="features">
+    <!-- Страница AI Assistant -->
+    <div id="ai-assistant-page" class="page">
         <div class="container">
-            <div class="section-title">
-                <h2>Our Key Features</h2>
-                <p>Designed with your mental health and privacy in mind</p>
+            <button class="btn btn-secondary back-button" data-page="home">← Back to Home</button>
+            <div class="page-header">
+                <h2>AI Mental Health Assistant</h2>
+                <p>Get personalized support from our AI assistant trained in psychology and mental health</p>
             </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">A</div>
-                    <h3>Complete Anonymity</h3>
-                    <p>Your identity is protected. We don't store personal data and all interactions are encrypted to ensure your privacy.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">AI</div>
-                    <h3>Mental Health Assistant</h3>
-                    <p>Our specialized assistant understands psychology, cognitive processes, and sociology to provide personalized support.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">C</div>
-                    <h3>Support Community</h3>
-                    <p>Connect with others who understand. Share experiences and support each other in a moderated, safe environment.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">S</div>
-                    <h3>Save Call Function</h3>
-                    <p>Anonymous calls to licensed professionals for those who need immediate specialized mental health support.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="new-features" id="new-features">
-        <div class="container">
-            <div class="section-title">
-                <h2>Innovative Mental Health Tools</h2>
-                <p>Explore our unique features designed to support your mental wellness journey</p>
-            </div>
-
-            <div class="features-tabs">
-                <button class="feature-tab active" data-tab="garden">Digital Garden</button>
-                <button class="feature-tab" data-tab="story">Story Weaving</button>
-                <button class="feature-tab" data-tab="comfort">Comfort Objects</button>
-                <button class="feature-tab" data-tab="ritual">Ritual Builder</button>
-                <button class="feature-tab" data-tab="weather">Mood Weather</button>
-                <button class="feature-tab" data-tab="capsule">Time Capsule</button>
-                <button class="feature-tab" data-tab="journal">Group Journal</button>
-                <button class="feature-tab" data-tab="scanner">Hope Scanner</button>
-            </div>
-
-            <!-- Digital Garden -->
-            <div class="feature-content active" id="garden-content">
-                <h3>Your Digital Garden</h3>
-                <p>Plant seeds of positive habits and watch them grow over time. Each plant represents a goal or positive practice in your life.</p>
-
-                <div class="garden-container">
-                    <div class="garden-plot">
-                        <h4>My Garden</h4>
-                        <div id="garden-plants">
-                            <!-- Plants will be added here dynamically -->
+            <div class="page-content">
+                <div class="chat-container">
+                    <div class="chat-messages" id="chat-messages" style="height: 400px; overflow-y: auto; border: 1px solid #ddd; padding: 15px; margin-bottom: 20px; border-radius: 8px; background-color: #f9f9f9;">
+                        <div class="message bot-message">
+                            <p>Hello! I'm your mental health assistant. How are you feeling today?</p>
                         </div>
                     </div>
-
-                    <div class="garden-plot">
-                        <h4>Plant a New Habit</h4>
+                    <div class="chat-input">
                         <div class="form-group">
-                            <label for="habit-name">Habit Name</label>
-                            <input type="text" id="habit-name" class="form-control" placeholder="e.g., Daily Gratitude">
+                            <textarea id="user-message" class="form-control" placeholder="Type your message here..." rows="3"></textarea>
                         </div>
-                        <div class="form-group">
-                            <label for="habit-category">Category</label>
-                            <select id="habit-category" class="form-control">
-                                <option value="mindfulness">Mindfulness</option>
-                                <option value="fitness">Fitness</option>
-                                <option value="social">Social</option>
-                                <option value="learning">Learning</option>
-                                <option value="selfcare">Self-Care</option>
-                            </select>
-                        </div>
-                        <button class="btn btn-primary" id="plant-habit">Plant This Habit</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Story Weaving -->
-            <div class="feature-content" id="story-content">
-                <h3>Anonymous Story Weaving</h3>
-                <p>Contribute your story anonymously and see how it connects with others to create beautiful collective narratives.</p>
-
-                <div class="story-container" id="story-container">
-                    <!-- Stories will be added here dynamically -->
-                </div>
-
-                <div class="form-group">
-                    <label for="story-input">Share Your Story Fragment</label>
-                    <textarea id="story-input" class="form-control" placeholder="Share a thought, feeling, or experience..."></textarea>
-                </div>
-                <button class="btn btn-primary" id="submit-story">Share Anonymously</button>
-            </div>
-
-            <!-- Comfort Objects -->
-            <div class="feature-content" id="comfort-content">
-                <h3>Virtual Comfort Objects</h3>
-                <p>Choose a digital comfort item to help you through difficult moments. These tools are always available when you need them.</p>
-
-                <div class="comfort-objects">
-                    <div class="comfort-item" data-tool="breathing">
-                        <div class="comfort-icon">🌬️</div>
-                        <span>Breathing Guide</span>
-                    </div>
-                    <div class="comfort-item" data-tool="sounds">
-                        <div class="comfort-icon">🎵</div>
-                        <span>Calming Sounds</span>
-                    </div>
-                    <div class="comfort-item" data-tool="visual">
-                        <div class="comfort-icon">🌈</div>
-                        <span>Visual Meditation</span>
-                    </div>
-                    <div class="comfort-item" data-tool="grounding">
-                        <div class="comfort-icon">🌍</div>
-                        <span>Grounding Exercise</span>
-                    </div>
-                    <div class="comfort-item" data-tool="affirmations">
-                        <div class="comfort-icon">💭</div>
-                        <span>Positive Affirmations</span>
-                    </div>
-                    <div class="comfort-item" data-tool="journal">
-                        <div class="comfort-icon">📓</div>
-                        <span>Quick Journal</span>
-                    </div>
-                </div>
-
-                <div id="comfort-tool-display" style="margin-top: 30px; padding: 20px; background-color: white; border-radius: 10px; display: none;">
-                    <h4 id="tool-title">Tool Title</h4>
-                    <div id="tool-content">
-                        <!-- Tool content will be displayed here -->
-                    </div>
-                </div>
-            </div>
-
-            <!-- Ritual Builder -->
-            <div class="feature-content" id="ritual-content">
-                <h3>Digital Ritual Builder</h3>
-                <p>Create personalized mental health rituals that you can practice regularly. Consistency builds resilience.</p>
-
-                <div class="ritual-steps" id="ritual-steps-container">
-                    <!-- Ritual steps will be added here dynamically -->
-                </div>
-
-                <div class="form-group">
-                    <label for="ritual-name">Ritual Name</label>
-                    <input type="text" id="ritual-name" class="form-control" placeholder="e.g., My Daily Grounding Practice">
-                </div>
-                <div class="form-group">
-                    <label for="new-ritual-step">Add a Step to Your Ritual</label>
-                    <input type="text" id="new-ritual-step" class="form-control" placeholder="Describe a step...">
-                    <button class="btn btn-secondary" id="add-ritual-step" style="margin-top: 10px;">Add Step</button>
-                </div>
-                <button class="btn btn-primary" id="save-ritual">Save My Ritual</button>
-                
-                <div id="saved-rituals" style="margin-top: 20px;">
-                    <h4>Your Saved Rituals</h4>
-                    <div id="rituals-list"></div>
-                </div>
-            </div>
-
-            <!-- Mood Weather Map -->
-            <div class="feature-content" id="weather-content">
-                <h3>Mood Weather Map</h3>
-                <p>See the emotional climate of our community. Your anonymous contribution helps others feel less alone.</p>
-
-                <div class="weather-map">
-                    <div class="weather-cell weather-sunny" data-mood="happy">
-                        Sunny<br>Happy
-                    </div>
-                    <div class="weather-cell weather-cloudy" data-mood="sad">
-                        Cloudy<br>Sad
-                    </div>
-                    <div class="weather-cell weather-rainy" data-mood="anxious">
-                        Rainy<br>Anxious
-                    </div>
-                    <div class="weather-cell weather-stormy" data-mood="overwhelmed">
-                        Stormy<br>Overwhelmed
-                    </div>
-                </div>
-
-                <div id="weather-stats" style="background-color: white; padding: 20px; border-radius: 10px; margin-top: 20px;">
-                    <h4>Community Mood Today</h4>
-                    <p>Based on anonymous reports from our users:</p>
-                    <ul id="mood-stats-list">
-                        <li>Sunny/Happy: <span id="happy-count">0</span>%</li>
-                        <li>Cloudy/Sad: <span id="sad-count">0</span>%</li>
-                        <li>Rainy/Anxious: <span id="anxious-count">0</span>%</li>
-                        <li>Stormy/Overwhelmed: <span id="overwhelmed-count">0</span>%</li>
-                    </ul>
-                </div>
-
-                <div style="margin-top: 20px;">
-                    <p><strong>How are you feeling today?</strong> Select a weather pattern above to anonymously share your mood.</p>
-                </div>
-            </div>
-
-            <!-- Time Capsule -->
-            <div class="feature-content" id="capsule-content">
-                <h3>Digital Time Capsule</h3>
-                <p>Write messages to your future self. Set a delivery date and receive your past thoughts when you need them most.</p>
-                
-                <div class="capsule-container">
-                    <div class="capsule-form">
-                        <div class="form-group">
-                            <label for="capsule-message">Message to Your Future Self</label>
-                            <textarea id="capsule-message" class="form-control" placeholder="What would you like to tell your future self?"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="delivery-date">Deliver On</label>
-                            <input type="date" id="delivery-date" class="form-control">
-                        </div>
-                        <button class="btn btn-primary" id="create-capsule">Create Time Capsule</button>
-                    </div>
-
-                    <div class="capsule-list">
-                        <h4>Your Time Capsules</h4>
-                        <div id="capsules-list">
-                            <!-- Capsules will be added here dynamically -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Group Journaling -->
-            <div class="feature-content" id="journal-content">
-                <h3>Anonymous Group Journaling</h3>
-                <p>Respond to prompts and read anonymous entries from others. Find comfort in shared experiences.</p>
-                <div class="journal-container">
-                    <div class="journal-prompt">
-                        <h4>Today's Prompt</h4>
-                        <p id="daily-prompt">"What's one small thing that brought you comfort or joy recently?"</p>
-                        <div class="form-group" style="margin-top: 20px;">
-                            <label for="journal-entry">Your Response</label>
-                            <textarea id="journal-entry" class="form-control" placeholder="Share your thoughts..."></textarea>
-                        </div>
-                        <button class="btn btn-primary" id="submit-journal">Share Anonymously</button>
-                    </div>
-                    <div class="journal-entries">
-                        <h4>Community Responses</h4>
-                        <div id="journal-entries-list">
-                            <!-- Journal entries will be added here dynamically -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Hope Scanner -->
-            <div class="feature-content" id="scanner-content">
-                <h3>Hope Horizon Scanner</h3>
-                <p>Discover positive future possibilities based on your interests. Take small steps toward a brighter tomorrow.</p>
-
-                <div class="scanner-container">
-                    <div class="scanner-input">
-                        <div class="form-group">
-                            <label for="user-interests">Your Interests</label>
-                            <input type="text" id="user-interests" class="form-control" placeholder="e.g., art, nature, technology, helping others">
-                        </div>
-                        <div class="form-group">
-                            <label for="user-strengths">Your Strengths</label>
-                            <input type="text" id="user-strengths" class="form-control" placeholder="e.g., creativity, listening, problem-solving">
-                        </div>
-                        <button class="btn btn-primary" id="scan-opportunities">Find Opportunities</button>
-                    </div>
-
-                    <div class="scanner-results">
-                        <h4>Potential Pathways</h4>
-                        <div id="opportunities-list">
-                            <!-- Opportunities will be added here dynamically -->
-                        </div>
+                        <button class="btn btn-primary" id="send-message">Send Message</button>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-
-    <section class="community" id="community">
-        <div class="container">
-            <div class="community-content">
-                <div class="community-text">
-                    <h2>Join Our Supportive Community</h2>
-                    <p>Our Mental Health community allows you to connect with others who may be experiencing similar challenges. Share your thoughts, ask questions, or simply read about others' experiences in a safe, moderated space.</p>
-                    <p>All community interactions are anonymous, and our moderation team ensures a respectful and supportive environment for everyone.</p>
-                    <button class="btn btn-primary" style="margin-top: 20px;" id="exploreCommunityBtn">Explore Community</button>
-                </div>
-                <div class="community-image">
-                    Community Forum Preview
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="call-section" id="call">
-        <div class="container">
-            <div class="call-box">
-                <h2>Need Immediate Support?</h2>
-                <p>Our Save Call function connects you anonymously with licensed mental health professionals. No personal information required.</p>
-                <button class="btn btn-light btn-large" id="saveCallBtn">Request Anonymous Call</button>
-                <p style="margin-top: 15px; font-size: 0.9rem;">Available 24/7 for urgent mental health support</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="volunteers" id="volunteers">
-        <div class="container">
-            <div class="volunteer-content">
-                <h2>Want to Help Others?</h2>
-                <p>We're looking for volunteers with backgrounds in psychology, mental health, cognitive processes, or sociology to support our community. If you have relevant education or experience, we'd love to have you on our team.</p>
-                <button class="btn btn-primary" id="volunteerBtn">Apply as Volunteer</button>
-            </div>
-        </div>
-    </section>
+    </div>
 
     <footer>
         <div class="container">
@@ -1277,11 +1393,11 @@
                 <div class="footer-column">
                     <h3>Quick Links</h3>
                     <ul class="footer-links">
-                        <li><a href="#features">Features</a></li>
-                        <li><a href="#new-features">New Tools</a></li>
-                        <li><a href="#community">Community</a></li>
-                        <li><a href="#call">Save Call</a></li>
-                        <li><a href="#volunteers">Volunteer</a></li>
+                        <li><a href="#" data-page="home">Home</a></li>
+                        <li><a href="#features" data-page="home">Features</a></li>
+                        <li><a href="#new-features" data-page="home">New Tools</a></li>
+                        <li><a href="#community" data-page="home">Community</a></li>
+                        <li><a href="#" data-page="forum">Forum</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
@@ -1354,6 +1470,10 @@
                 <div class="form-group">
                     <label for="signupPassword">Password</label>
                     <input type="password" id="signupPassword" class="form-control" placeholder="Create a password">
+                </div>
+                <div class="form-group">
+                    <label for="signupAge">Age</label>
+                    <input type="number" id="signupAge" class="form-control" placeholder="Enter your age" min="13">
                 </div>
                 <button type="submit" class="btn btn-primary" style="width: 100%;" id="signupSubmitBtn" disabled>Sign Up</button>
             </form>
@@ -1481,6 +1601,50 @@
             document.getElementById('age-verification').addEventListener('change', function() {
                 document.getElementById('signupSubmitBtn').disabled = !this.checked;
             });
+
+            // Page navigation
+            setupPageNavigation();
+
+            // AI Chat
+            document.getElementById('send-message').addEventListener('click', sendMessage);
+        }
+
+        function setupPageNavigation() {
+            // Navigation between pages
+            const navLinks = document.querySelectorAll('a[data-page], button[data-page]');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const pageId = this.getAttribute('data-page') + '-page';
+                    showPage(pageId);
+                });
+            });
+
+            // Main buttons functionality
+            document.getElementById('talkToAIBtn').addEventListener('click', () => {
+                showPage('ai-assistant-page');
+            });
+
+            document.getElementById('joinCommunityBtn').addEventListener('click', () => {
+                showPage('forum-page');
+            });
+
+            document.getElementById('exploreCommunityBtn').addEventListener('click', () => {
+                showPage('forum-page');
+            });
+        }
+
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show the selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
         }
 
         function initializeFeatures() {
@@ -1927,6 +2091,52 @@
             return opportunities;
         }
 
+        // AI Chat Functions
+        function sendMessage() {
+            const userMessage = document.getElementById('user-message').value;
+            if (userMessage.trim() === '') return;
+            
+            const chatMessages = document.getElementById('chat-messages');
+            
+            // Add user message
+            const userMsgElement = document.createElement('div');
+            userMsgElement.className = 'message user-message';
+            userMsgElement.innerHTML = `<p><strong>You:</strong> ${userMessage}</p>`;
+            chatMessages.appendChild(userMsgElement);
+            
+            // Clear input
+            document.getElementById('user-message').value = '';
+            
+            // Simulate AI response
+            setTimeout(() => {
+                const botResponse = generateAIResponse(userMessage);
+                const botMsgElement = document.createElement('div');
+                botMsgElement.className = 'message bot-message';
+                botMsgElement.innerHTML = `<p><strong>Assistant:</strong> ${botResponse}</p>`;
+                chatMessages.appendChild(botMsgElement);
+                
+                // Scroll to bottom
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 1000);
+            
+            // Scroll to bottom
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function generateAIResponse(userMessage) {
+            const responses = [
+                "I hear you. It's completely normal to feel that way sometimes. Would you like to talk more about what's on your mind?",
+                "Thank you for sharing that with me. Remember that your feelings are valid, and it's okay to not be okay sometimes.",
+                "I understand how challenging that can be. Have you tried any coping strategies that have helped you in the past?",
+                "It sounds like you're going through a difficult time. Would it help to practice a breathing exercise together?",
+                "I appreciate you opening up about this. Remember that seeking support is a sign of strength, not weakness.",
+                "That sounds really tough. Would you like me to suggest some resources that might be helpful?",
+                "I'm here to listen without judgment. Take your time, and share whatever feels comfortable for you."
+            ];
+            
+            return responses[Math.floor(Math.random() * responses.length)];
+        }
+
         // Modal Functions
         function setupModals() {
             const loginBtn = document.getElementById('loginBtn');
@@ -1972,6 +2182,12 @@
 
             document.getElementById('signupForm').addEventListener('submit', (e) => {
                 e.preventDefault();
+                const age = document.getElementById('signupAge').value;
+                if (age < 13) {
+                    showNotification('You must be at least 13 years old to use YouthCare', 'error');
+                    return;
+                }
+                
                 if (document.getElementById('age-verification').checked) {
                     showNotification('Sign up functionality would be implemented here', 'info');
                     signupModal.style.display = 'none';
@@ -1995,19 +2211,6 @@
                         });
                     }
                 });
-            });
-
-            // Main buttons functionality
-            document.getElementById('talkToAIBtn').addEventListener('click', () => {
-                showNotification('AI Assistant would open here with mental health support', 'info');
-            });
-
-            document.getElementById('joinCommunityBtn').addEventListener('click', () => {
-                showNotification('Community forum would open here', 'info');
-            });
-
-            document.getElementById('exploreCommunityBtn').addEventListener('click', () => {
-                showNotification('Community features would be displayed here', 'info');
             });
 
             document.getElementById('saveCallBtn').addEventListener('click', () => {
