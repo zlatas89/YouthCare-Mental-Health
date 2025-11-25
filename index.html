@@ -1,4 +1,4 @@
-YouthCareMentalHEALTHtevizja this is my id in firebase and i alredy conected my website <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -472,17 +472,17 @@ YouthCareMentalHEALTHtevizja this is my id in firebase and i alredy conected my 
             auth.onAuthStateChanged((user) => {
                 if (user) {
                     // User is signed in
-                    document.querySelector('.auth-buttons').innerHTML = `
+                    document.querySelector('.auth-buttons').innerHTML = 
                         <span style="color: var(--primary); margin-right: 15px;">Welcome!</span>
                         <button class="btn btn-outline" id="logoutBtn">Logout</button>
-                    `;
+                    ;
                     document.getElementById('logoutBtn').addEventListener('click', logout);
                 } else {
                     // User is signed out
-                    document.querySelector('.auth-buttons').innerHTML = `
+                    document.querySelector('.auth-buttons').innerHTML = 
                         <button class="btn btn-secondary" id="loginBtn">Login</button>
                         <button class="btn btn-primary" id="signupBtn">Sign Up</button>
-                    `;
+                    ;
                     // Reattach event listeners
                     document.getElementById('loginBtn').addEventListener('click', () => openModal(loginModal));
                     document.getElementById('signupBtn').addEventListener('click', () => openModal(signupModal));
@@ -571,7 +571,7 @@ YouthCareMentalHEALTHtevizja this is my id in firebase and i alredy conected my 
             });
             
             // Show selected category posts
-            const postsElement = document.getElementById(`${category}-posts`);
+            const postsElement = document.getElementById(${category}-posts);
             if (postsElement.style.display === 'none') {
                 postsElement.style.display = 'block';
             } else {
@@ -581,7 +581,7 @@ YouthCareMentalHEALTHtevizja this is my id in firebase and i alredy conected my 
 
         async function loadForumPosts(category) {
             const posts = await Database.getPosts(category);
-            const postsList = document.getElementById(`${category}-posts-list`);
+            const postsList = document.getElementById(${category}-posts-list);
             
             if (posts.length === 0) {
                 postsList.innerHTML = '<p>No posts yet. Be the first to share!</p>';
@@ -598,7 +598,7 @@ YouthCareMentalHEALTHtevizja this is my id in firebase and i alredy conected my 
         function createPostElement(post, category) {
             const postElement = document.createElement('div');
             postElement.className = 'forum-post';
-            postElement.innerHTML = `
+            postElement.innerHTML = 
                 <div class="post-header">
                     <div class="post-author">${post.authorName}</div>
                     <div class="post-date">${new Date(post.createdAt?.toDate()).toLocaleDateString()}</div>
@@ -619,38 +619,38 @@ YouthCareMentalHEALTHtevizja this is my id in firebase and i alredy conected my 
                 </div>
                 <div class="comments-section" id="comments-${post.id}" style="display: none;">
                     <div class="comments-list" id="comments-list-${post.id}">
-                        ${post.comments ? post.comments.map(comment => `
+                        ${post.comments ? post.comments.map(comment => 
                             <div class="comment">
                                 <strong>${comment.authorName}:</strong> ${comment.content}
                                 <small>${new Date(comment.createdAt?.toDate()).toLocaleDateString()}</small>
                             </div>
-                        `).join('') : ''}
+                        ).join('') : ''}
                     </div>
                     <div class="comment-form">
                         <textarea id="comment-${post.id}" class="form-control" placeholder="Add a comment..." rows="2"></textarea>
                         <button class="btn btn-primary" onclick="addComment('${post.id}')" style="margin-top: 10px;">Add Comment</button>
                     </div>
                 </div>
-            `;
+            ;
             return postElement;
         }
 
         function showPostForm(category) {
-            document.getElementById(`${category}-post-form`).style.display = 'block';
-            document.getElementById(`new-${category}-post`).style.display = 'none';
+            document.getElementById(${category}-post-form).style.display = 'block';
+            document.getElementById(new-${category}-post).style.display = 'none';
         }
 
         function hidePostForm(category) {
-            document.getElementById(`${category}-post-form`).style.display = 'none';
-            document.getElementById(`new-${category}-post`).style.display = 'block';
+            document.getElementById(${category}-post-form).style.display = 'none';
+            document.getElementById(new-${category}-post).style.display = 'block';
             // Clear form
-            document.getElementById(`${category}-post-title`).value = '';
-            document.getElementById(`${category}-post-content`).value = '';
+            document.getElementById(${category}-post-title).value = '';
+            document.getElementById(${category}-post-content).value = '';
         }
 
         async function submitPost(category) {
-            const title = document.getElementById(`${category}-post-title`).value;
-            const content = document.getElementById(`${category}-post-content`).value;
+            const title = document.getElementById(${category}-post-title).value;
+            const content = document.getElementById(${category}-post-content).value;
             
             if (!title || !content) {
                 showNotification('Please fill in both title and content', 'error');
@@ -686,7 +686,7 @@ YouthCareMentalHEALTHtevizja this is my id in firebase and i alredy conected my 
         }
 
         function toggleComments(postId) {
-            const commentsSection = document.getElementById(`comments-${postId}`);
+            const commentsSection = document.getElementById(comments-${postId});
             if (commentsSection.style.display === 'none') {
                 commentsSection.style.display = 'block';
             } else {
@@ -695,7 +695,7 @@ YouthCareMentalHEALTHtevizja this is my id in firebase and i alredy conected my 
         }
 
         async function addComment(postId) {
-            const commentContent = document.getElementById(`comment-${postId}`).value;
+            const commentContent = document.getElementById(comment-${postId}).value;
             
             if (!commentContent) {
                 showNotification('Please write a comment', 'error');
@@ -709,7 +709,7 @@ YouthCareMentalHEALTHtevizja this is my id in firebase and i alredy conected my 
             
             if (result.success) {
                 showNotification('Comment added!', 'success');
-                document.getElementById(`comment-${postId}`).value = '';
+                document.getElementById(comment-${postId}).value = '';
                 // Refresh the posts to show new comment
                 // In a real app, you might want to update just the comments for this post
             } else {
@@ -901,6 +901,8 @@ YouthCareMentalHEALTHtevizja this is my id in firebase and i alredy conected my 
     </script>
 </body>
 </html>
+
+
     <script>
         // 🔥 FIREBASE CONFIGURATION - ADD YOUR ACTUAL CONFIG HERE
         const firebaseConfig = {
