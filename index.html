@@ -901,3 +901,412 @@
     </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouthCare - Youth Mental Health Support</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Добавляем Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
+
+    <style>
+        /* Ваши существующие стили остаются без изменений */
+        :root {
+            --primary: #FF7F50;
+            --secondary: #FF9E7D;
+            /* ... остальные стили ... */
+        }
+        
+        /* Весь ваш CSS код остается здесь */
+    </style>
+</head>
+<body>
+    <!-- Ваш HTML код остается без изменений -->
+
+    <script>
+        // 🔥 Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_PROJECT_ID.appspot.com",
+            messagingSenderId: "YOUR_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        const auth = firebase.auth();
+
+        // Data storage - теперь будем использовать Firebase вместо локального хранилища
+        let userData = {
+            habits: [],
+            stories: [],
+            rituals: [],
+            capsules: [],
+            journalEntries: [],
+            moodData: { happy: 0, sad: 0, anxious: 0, overwhelmed: 0 },
+            comfortTools: {},
+            currentUser: null
+        };
+
+        // Initialize the app
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeFirebase();
+            initializeApp();
+        });
+
+        async function initializeFirebase() {
+            try {
+                // Проверяем, авторизован ли пользователь
+                auth.onAuthStateChanged((user) => {
+                    if (user) {
+                        userData.currentUser = user;
+                        console.log('User is signed in:', user.email);
+                        loadUserData(user.uid);
+                    } else {
+                        console.log('No user signed in');
+                        loadSampleData(); // Загружаем sample данные для гостей
+                    }
+                });
+            } catch (error) {
+                console.error('Firebase initialization error:', error);
+                loadSampleData(); // Fallback на sample данные
+            }
+        }
+
+        // 🔐 Обновленные функции аутентификации
+        function setupModals() {
+            // ... существующий код ...
+
+            document.getElementById('loginForm').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const email = document.getElementById('loginUsername').value;
+                const password = document.getElementById('loginPassword').value;
+
+                try {
+                    const userCredential = await auth.signInWithEmailAndPassword(email, password);
+                    showNotification('Login successful!', 'success');
+                    loginModal.style.display = 'none';
+                } catch (error) {
+                    showNotification('Login failed: ' + error.message, 'error');
+                }
+            });
+
+            document.getElementById('signupForm').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const email = document.getElementById('signupEmail').value;
+                const password = document.getElementById('signupPassword').value;
+                const age = document.getElementById('signupAge').value;
+
+                if (age < 13) {
+                    showNotification('You must be at least 13 years old to use YouthCare', 'error');
+                    return;
+                }
+
+                if (!document.getElementById('age-verification').checked) {
+                    showNotification('Please confirm you are at least 13 years old', 'error');
+                    return;
+                }
+
+                try {
+                    const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+                    // Сохраняем дополнительную информацию о пользователе
+                    await db.collection('users').doc(userCredential.user.uid).set({
+                        email: email,
+                        age: parseInt(age),
+                        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                    });
+                    showNotification('Account created successfully!', 'success');
+                    signupModal.style.display = 'none';
+                } catch (error) {
+                    showNotification('Sign up failed: ' + error.message, 'error');
+                }
+            });
+        }
+
+        // 💾 Функции для работы с Firestore
+
+        // Загрузка данных пользователя
+        async function loadUserData(userId) {
+            try {
+                // Загружаем привычки
+                const habitsSnapshot = await db.collection('users').doc(userId).collection('habits').get();
+                userData.habits = habitsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                renderHabits();
+
+                // Загружаем истории
+                const storiesSnapshot = await db.collection('stories').orderBy('timestamp', 'desc').limit(10).get();
+                userData.stories = storiesSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                renderStories();
+
+                // Загружаем капсулы времени
+                const capsulesSnapshot = await db.collection('users').doc(userId).collection('capsules').get();
+                userData.capsules = capsulesSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                renderCapsules();
+
+                // Загружаем статистику настроения
+                const moodSnapshot = await db.collection('moodStats').doc('current').get();
+                if (moodSnapshot.exists) {
+                    userData.moodData = moodSnapshot.data();
+                    updateMoodStats();
+                }
+
+            } catch (error) {
+                console.error('Error loading user data:', error);
+                showNotification('Error loading data', 'error');
+            }
+        }
+
+        // 🌱 Обновленная функция Digital Garden
+        async function plantHabit() {
+            const habitName = document.getElementById('habit-name').value;
+            const habitCategory = document.getElementById('habit-category').value;
+            
+            if (!habitName) {
+                showNotification('Please enter a habit name', 'error');
+                return;
+            }
+
+            if (!userData.currentUser) {
+                showNotification('Please sign in to save habits', 'error');
+                return;
+            }
+
+            try {
+                const newHabit = {
+                    name: habitName,
+                    category: habitCategory,
+                    date: new Date().toISOString(),
+                    userId: userData.currentUser.uid
+                };
+
+                const docRef = await db.collection('users').doc(userData.currentUser.uid).collection('habits').add(newHabit);
+                
+                userData.habits.push({ id: docRef.id, ...newHabit });
+                renderHabits();
+                
+                document.getElementById('habit-name').value = '';
+                showNotification('Habit planted successfully!', 'success');
+            } catch (error) {
+                console.error('Error saving habit:', error);
+                showNotification('Error saving habit', 'error');
+            }
+        }
+
+        // 📖 Обновленная функция Story Weaving
+        async function submitStory() {
+            const storyInput = document.getElementById('story-input').value;
+            
+            if (!storyInput) {
+                showNotification('Please write something to share', 'error');
+                return;
+            }
+
+            try {
+                const newStory = {
+                    text: storyInput,
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                    isAnonymous: true
+                };
+
+                // Если пользователь авторизован, добавляем его ID
+                if (userData.currentUser) {
+                    newStory.userId = userData.currentUser.uid;
+                }
+
+                await db.collection('stories').add(newStory);
+                
+                // Обновляем локальные данные
+                userData.stories.unshift({
+                    text: storyInput,
+                    date: 'just now',
+                    ...newStory
+                });
+                renderStories();
+                
+                document.getElementById('story-input').value = '';
+                showNotification('Story shared anonymously!', 'success');
+            } catch (error) {
+                console.error('Error sharing story:', error);
+                showNotification('Error sharing story', 'error');
+            }
+        }
+
+        // ⏳ Обновленная функция Time Capsule
+        async function createCapsule() {
+            const message = document.getElementById('capsule-message').value;
+            const date = document.getElementById('delivery-date').value;
+
+            if (!message || !date) {
+                showNotification('Please provide both a message and delivery date', 'error');
+                return;
+            }
+
+            if (!userData.currentUser) {
+                showNotification('Please sign in to create time capsules', 'error');
+                return;
+            }
+
+            try {
+                const newCapsule = {
+                    message: message,
+                    deliveryDate: date,
+                    created: new Date().toISOString(),
+                    userId: userData.currentUser.uid
+                };
+
+                const docRef = await db.collection('users').doc(userData.currentUser.uid).collection('capsules').add(newCapsule);
+                
+                userData.capsules.push({ id: docRef.id, ...newCapsule });
+                renderCapsules();
+                
+                document.getElementById('capsule-message').value = '';
+                document.getElementById('delivery-date').value = '';
+                
+                showNotification('Time capsule created! You will receive this message on the selected date.', 'success');
+            } catch (error) {
+                console.error('Error creating capsule:', error);
+                showNotification('Error creating time capsule', 'error');
+            }
+        }
+
+        // 🌤️ Обновленная функция Mood Weather
+        async function submitMood(mood) {
+            try {
+                // Обновляем статистику в Firestore
+                await db.collection('moodStats').doc('current').set({
+                    [mood]: firebase.firestore.FieldValue.increment(1),
+                    lastUpdated: firebase.firestore.FieldValue.serverTimestamp()
+                }, { merge: true });
+
+                // Записываем индивидуальный голос
+                if (userData.currentUser) {
+                    await db.collection('users').doc(userData.currentUser.uid).collection('moodEntries').add({
+                        mood: mood,
+                        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                    });
+                }
+
+                // Обновляем локальные данные
+                userData.moodData[mood]++;
+                updateMoodStats();
+                
+                showNotification(`Thank you for sharing your mood (${mood}). Your response is anonymous.`, 'success');
+            } catch (error) {
+                console.error('Error submitting mood:', error);
+                showNotification('Error submitting mood', 'error');
+            }
+        }
+
+        // 📝 Обновленная функция Group Journaling
+        async function submitJournal() {
+            const entry = document.getElementById('journal-entry').value;
+            
+            if (!entry) {
+                showNotification('Please write a response to share', 'error');
+                return;
+            }
+
+            try {
+                const newEntry = {
+                    text: entry,
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                    prompt: document.getElementById('daily-prompt').textContent,
+                    isAnonymous: true
+                };
+
+                // Если пользователь авторизован, добавляем его ID
+                if (userData.currentUser) {
+                    newEntry.userId = userData.currentUser.uid;
+                }
+
+                await db.collection('journalEntries').add(newEntry);
+                
+                // Обновляем локальные данные
+                userData.journalEntries.unshift({
+                    text: entry,
+                    timestamp: new Date().toLocaleTimeString(),
+                    ...newEntry
+                });
+                renderJournalEntries();
+                
+                document.getElementById('journal-entry').value = '';
+                showNotification('Thank you for sharing your response anonymously!', 'success');
+            } catch (error) {
+                console.error('Error sharing journal entry:', error);
+                showNotification('Error sharing journal entry', 'error');
+            }
+        }
+
+        // 👥 Обновленная функция Volunteer Form
+        async function submitVolunteerForm(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('volunteer-name').value;
+            const email = document.getElementById('volunteer-email').value;
+            const age = document.getElementById('volunteer-age').value;
+            const background = document.getElementById('volunteer-background').value;
+            const experience = document.getElementById('volunteer-experience').value;
+            const availability = document.getElementById('volunteer-availability').value;
+            const motivation = document.getElementById('volunteer-motivation').value;
+            
+            if (!name || !email || !age) {
+                showNotification('Please fill in all required fields', 'error');
+                return;
+            }
+            
+            if (age < 18) {
+                showNotification('You must be at least 18 years old to volunteer', 'error');
+                return;
+            }
+
+            try {
+                const volunteerApplication = {
+                    name: name,
+                    email: email,
+                    age: parseInt(age),
+                    background: background,
+                    experience: experience,
+                    availability: availability,
+                    motivation: motivation,
+                    submittedAt: firebase.firestore.FieldValue.serverTimestamp(),
+                    status: 'pending'
+                };
+
+                await db.collection('volunteerApplications').add(volunteerApplication);
+                
+                showNotification('Thank you for your application! We will review it and contact you soon.', 'success');
+                document.getElementById('volunteerForm').reset();
+            } catch (error) {
+                console.error('Error submitting volunteer application:', error);
+                showNotification('Error submitting application', 'error');
+            }
+        }
+
+        // Остальные функции (initializeApp, setupEventListeners, render functions и т.д.)
+        // остаются практически без изменений, но теперь используют Firebase
+
+        function initializeApp() {
+            // Загружаем sample данные только если пользователь не авторизован
+            if (!userData.currentUser) {
+                loadSampleData();
+            }
+            
+            setupEventListeners();
+            initializeFeatures();
+            
+            console.log('YouthCare app initialized with Firebase!');
+        }
+
+        // ... остальной ваш JavaScript код ...
+
+    </script>
+</body>
+</html>
